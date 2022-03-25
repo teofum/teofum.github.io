@@ -52,6 +52,7 @@ interface DemoPatternImageProps {
 const DemoPatternImage = ({
   showSizeRadio
 }: DemoPatternImageProps) => {
+  const [loaded, setLoaded] = useState(false);
   const [size, setSize] = useState('4');
   const [pattern, setPattern] = useState(false);
 
@@ -69,27 +70,34 @@ const DemoPatternImage = ({
       return;
     }
 
-    const scaling = window.devicePixelRatio;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width * scaling / img.naturalWidth;
-    const scaleY = rect.height * scaling / img.naturalHeight;
-    const scale = Math.max(scaleX, scaleY);
+    if (loaded) {
+      const scaling = window.devicePixelRatio;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = rect.width * scaling / img.naturalWidth;
+      const scaleY = rect.height * scaling / img.naturalHeight;
+      const scale = Math.max(scaleX, scaleY);
 
-    canvas.width = img.naturalWidth * scale;
-    canvas.height = img.naturalHeight * scale;
+      canvas.width = img.naturalWidth * scale;
+      canvas.height = img.naturalHeight * scale;
 
-    drawImageWithShader(
-      img,
-      canvas,
-      shader,
-      [
-        { name: 'u_useThreshold', value: pattern ? 1 : 0 },
-        { name: 'u_tileSize', value: parseInt(size) }
-      ],
-      glCache,
-      'bayerThreshold4'
-    );
-  }, [canvas, img, pattern, size]);
+      drawImageWithShader(
+        img,
+        canvas,
+        shader,
+        [
+          { name: 'u_useThreshold', value: pattern ? 1 : 0 },
+          { name: 'u_tileSize', value: parseInt(size) }
+        ],
+        glCache,
+        'bayerThreshold4'
+      );
+    } else {
+      const onload = () => setLoaded(img?.complete || false);
+      img.addEventListener('load', onload, { once: true });
+
+      return () => img?.removeEventListener('load', onload);
+    }
+  }, [canvas, img, pattern, size, loaded]);
 
   return (
     <div className={demoStyles.container}>

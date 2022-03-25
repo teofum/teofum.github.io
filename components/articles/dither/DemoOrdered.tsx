@@ -47,6 +47,7 @@ interface DemoOrderedProps {
 }
 
 const DemoOrdered = ({ type, sizes, initial }: DemoOrderedProps) => {
+  const [loaded, setLoaded] = useState(false);
   const [size, setSize] = useState(initial || '8');
   const [original, setOriginal] = useState(false);
 
@@ -64,24 +65,31 @@ const DemoOrdered = ({ type, sizes, initial }: DemoOrderedProps) => {
       return;
     }
 
-    const scaling = window.devicePixelRatio;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width * scaling / img.naturalWidth;
-    const scaleY = rect.height * scaling / img.naturalHeight;
-    const scale = Math.max(scaleX, scaleY);
+    if (loaded) {
+      const scaling = window.devicePixelRatio;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = rect.width * scaling / img.naturalWidth;
+      const scaleY = rect.height * scaling / img.naturalHeight;
+      const scale = Math.max(scaleX, scaleY);
 
-    canvas.width = img.naturalWidth * scale;
-    canvas.height = img.naturalHeight * scale;
+      canvas.width = img.naturalWidth * scale;
+      canvas.height = img.naturalHeight * scale;
 
-    drawImageWithShader(
-      img,
-      canvas,
-      shader,
-      [],
-      glCache,
-      `${type}Threshold${size}`
-    );
-  }, [canvas, img, type, size]);
+      drawImageWithShader(
+        img,
+        canvas,
+        shader,
+        [],
+        glCache,
+        `${type}Threshold${size}`
+      );
+    } else {
+      const onload = () => setLoaded(img?.complete || false);
+      img.addEventListener('load', onload, { once: true });
+
+      return () => img?.removeEventListener('load', onload);
+    }
+  }, [canvas, img, type, size, loaded]);
 
   return (
     <div className={demoStyles.container}>

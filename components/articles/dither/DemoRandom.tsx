@@ -33,6 +33,7 @@ void main() {
 }`;
 
 const DemoThreshold = () => {
+  const [loaded, setLoaded] = useState(false);
   const [t, setT] = useState(0.5);
   const [k, setK] = useState(1);
   const [original, setOriginal] = useState(false);
@@ -51,26 +52,33 @@ const DemoThreshold = () => {
       return;
     }
 
-    const scaling = window.devicePixelRatio;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width * scaling / img.naturalWidth;
-    const scaleY = rect.height * scaling / img.naturalHeight;
-    const scale = Math.max(scaleX, scaleY);
+    if (loaded) {
+      const scaling = window.devicePixelRatio;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = rect.width * scaling / img.naturalWidth;
+      const scaleY = rect.height * scaling / img.naturalHeight;
+      const scale = Math.max(scaleX, scaleY);
 
-    canvas.width = img.naturalWidth * scale;
-    canvas.height = img.naturalHeight * scale;
+      canvas.width = img.naturalWidth * scale;
+      canvas.height = img.naturalHeight * scale;
 
-    drawImageWithShader(
-      img,
-      canvas,
-      shader,
-      [
-        { name: 'u_threshold', value: t },
-        { name: 'u_amplitude', value: k }
-      ],
-      glCache
-    );
-  }, [canvas, img, t, k]);
+      drawImageWithShader(
+        img,
+        canvas,
+        shader,
+        [
+          { name: 'u_threshold', value: t },
+          { name: 'u_amplitude', value: k }
+        ],
+        glCache
+      );
+    } else {
+      const onload = () => setLoaded(img?.complete || false);
+      img.addEventListener('load', onload, { once: true });
+
+      return () => img?.removeEventListener('load', onload);
+    }
+  }, [canvas, img, t, k, loaded]);
 
   return (
     <div className={demoStyles.container}>

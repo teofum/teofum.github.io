@@ -27,6 +27,7 @@ void main() {
 }`;
 
 const DemoThreshold = () => {
+  const [loaded, setLoaded] = useState(false);
   const [t, setT] = useState(0.5);
   const [original, setOriginal] = useState(false);
 
@@ -44,25 +45,32 @@ const DemoThreshold = () => {
       return;
     }
 
-    const scaling = window.devicePixelRatio;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width * scaling / img.naturalWidth;
-    const scaleY = rect.height * scaling / img.naturalHeight;
-    const scale = Math.max(scaleX, scaleY);
+    if (loaded) {
+      const scaling = window.devicePixelRatio;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = rect.width * scaling / img.naturalWidth;
+      const scaleY = rect.height * scaling / img.naturalHeight;
+      const scale = Math.max(scaleX, scaleY);
 
-    canvas.width = img.naturalWidth * scale;
-    canvas.height = img.naturalHeight * scale;
+      canvas.width = img.naturalWidth * scale;
+      canvas.height = img.naturalHeight * scale;
 
-    drawImageWithShader(
-      img,
-      canvas,
-      shader,
-      [
-        { name: 'u_threshold', value: t }
-      ],
-      glCache
-    );
-  }, [canvas, img, t]);
+      drawImageWithShader(
+        img,
+        canvas,
+        shader,
+        [
+          { name: 'u_threshold', value: t }
+        ],
+        glCache
+      );
+    } else {
+      const onload = () => setLoaded(img?.complete || false);
+      img.addEventListener('load', onload, { once: true });
+
+      return () => img?.removeEventListener('load', onload);
+    }
+  }, [canvas, img, t, loaded]);
 
   return (
     <div className={demoStyles.container}>
