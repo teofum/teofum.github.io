@@ -1,0 +1,29 @@
+$breakpoints-up: (
+  'tablet-sm': 640px,
+  'tablet': 900px,
+  'desktop': 1280px,
+  'desktop-lg': 1600px
+) !default;
+
+@mixin respond-up($breakpoint) {
+  @if map-has-key($breakpoints-up, $breakpoint) {
+    @media (min-width: map-get($breakpoints-up, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+$breakpoints-down: (
+  'mobile':  639.99px,
+  'tablet-sm': 899.99px,
+  'tablet': 1279.99px,
+  'desktop': 1599.99px
+) !default;
+
+@mixin respond-down($breakpoint) {
+  @if map-has-key($breakpoints-down, $breakpoint) {
+    @media (max-width: map-get($breakpoints-down, $breakpoint)) {
+      @content;
+    }
+  }
+}

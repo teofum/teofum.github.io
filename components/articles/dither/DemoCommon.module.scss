@@ -1,0 +1,86 @@
+@import '../../../styles/breakpoints.scss';
+
+.container {
+  margin: 2em 0;
+
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  
+  @include respond-up('tablet-sm') {
+    grid-template-columns: auto auto;
+    align-items: center;
+  }
+}
+
+.demoFrame {
+  width: 15em;
+  max-width: 100%;
+  margin: 0 auto;
+
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 -2px var(--bg), 6px 6px 0 0 currentColor;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.demoFrame::before {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+.demoFrame.wide {
+  width: 20em;
+}
+
+.demoFrame.wide::before {
+  padding-bottom: 66.67%;
+}
+
+.canvas,
+.demoContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.controls {
+  width: 15em;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.controls > label {
+  display: grid;
+  grid-template-columns: minmax(5ch, auto) 1fr;
+  align-items: center;
+  gap: 1rem;
+
+  font-weight: 700;
+}
+
+.controls > label.withValueLabel {
+  grid-template-columns: minmax(5ch, auto) 1fr auto;
+}
+
+.controls > label > div:last-child {
+  justify-self: end;
+}
+
+.controls input {
+  flex-grow: 1;
+  max-width: 100%;
+  min-width: 0px;
+}

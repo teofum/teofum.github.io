@@ -1,0 +1,43 @@
+.radio {
+  border: none;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.radio > legend {
+  font-weight: 700;
+}
+
+.radio > div {
+  font-size: var(--text-sm);
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+  padding: 4px;
+
+  justify-self: end;
+}
+
+.radioButton > input[type=radio] {
+  display: none;
+}
+
+.label {
+  font-weight: 700;
+  padding: 0.125em 0.5em;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.label:hover {
+  background-color: var(--h100);
+}
+
+input[type=radio]:checked + .label {
+  background-color: var(--text);
+  color: var(--bg);
+}

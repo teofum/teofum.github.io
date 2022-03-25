@@ -1,0 +1,42 @@
+@import "../breakpoints.scss";
+
+/* === Layout styling ======================================================= */
+
+.layoutRoot {
+  --padding: 2rem;
+
+  @include respond-up("tablet-sm") {
+    --padding: 4rem;
+  }
+
+  @include respond-up("desktop") {
+    --padding: 8rem;
+  }
+}
+
+.mainContent {
+  padding: 0 var(--padding);
+}
+
+.mainContent > * {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 2px solid currentColor;
+
+  padding-top: 6rem;
+  padding-bottom: 1rem;
+
+  @include respond-up("tablet-sm") {
+    padding-top: 12rem;
+  }
+}
+
+.settings {
+  position: sticky;
+  top: 2em;
+  height: 0;
+  z-index: 50;
+}

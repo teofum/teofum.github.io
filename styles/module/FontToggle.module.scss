@@ -1,0 +1,39 @@
+.fontToggle {
+  width: 1em;
+  height: 1em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: end;
+}
+
+.fontToggle * {
+  font-size: var(--text-base);
+  font-weight: 450;
+
+  transition:
+    transform 350ms cubic-bezier(0, 0, 0, 1.25) 150ms,
+    color 350ms ease-out 150ms;
+}
+
+.sans {
+  font-family: 'IBM Plex Sans', sans-serif;
+  transform-origin: 0% 70%;
+}
+
+.serif {
+  font-family: 'IBM Plex Serif', serif;
+  text-align: right;
+  transform-origin: 100% 70%;
+}
+
+.fontToggle:not(.toggled) .sans,
+.fontToggle.toggled .serif {
+  color: var(--text);
+  transform: scale(1.5);
+}
+
+.fontToggle:not(.toggled) .serif,
+.fontToggle.toggled .sans {
+  color: var(--text-light);
+  transform: scale(1);
+}

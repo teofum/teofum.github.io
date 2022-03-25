@@ -1,0 +1,86 @@
+@import '../breakpoints.scss';
+
+.anchor {
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  top: -1em;
+  right: 0;
+
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+
+  @include respond-up('tablet') {
+    right: calc(var(--padding) * -1);
+    flex-direction: column;
+  }
+}
+
+.container > button {
+  font-size: var(--text-lg);
+  padding: 0.5em;
+  border-radius: 50%;
+  display: grid;
+  box-shadow: 0 0 0 4px var(--bg);
+
+  transform-origin: center;
+  transition:
+    transform 250ms cubic-bezier(.28,.95,.53,1.31),
+    background-color 150ms ease-out,
+    box-shadow 150ms ease-out;
+  transform: scale(1);
+
+  position: relative;
+}
+
+.container > button:hover {
+  transform: scale(1.05);
+}
+
+.container > button:active {
+  transform: scale(0.95);
+}
+
+.container > button .tooltip {
+  position: absolute;
+  left: calc(100% + 1em);
+
+  font-size: var(--text-base);
+  white-space: nowrap;
+  font-weight: 450;
+
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  opacity: 0;
+
+  @media (hover: none) {
+    display: none;
+  }
+}
+
+.container > button:hover:not(:active) .tooltip {
+  opacity: 1;
+}
+
+button.expandToggle {
+  z-index: 1;
+}
+
+@include respond-down('mobile') {
+  .container > button {
+    transition-timing-function: ease-out;
+  }
+
+  .container:not(.expanded) > button {
+    transform: translateX(calc((100% + 1rem) * var(--n)));
+  }
+}
+
+@include respond-up('tablet-sm') {
+  button.expandToggle {
+    display: none;
+  }
+}

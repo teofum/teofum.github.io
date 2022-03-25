@@ -1,0 +1,154 @@
+@import "../public/font/css/ibm-plex.css";
+@import "./theme.scss";
+@import "./breakpoints.scss";
+
+@import './elements/input-range.scss';
+@import './elements/button.scss';
+@import './elements/checkbox.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+  transition-timing-function: ease-out;
+  transition-duration: 150ms;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+
+  font-size: var(--text-base);
+  line-height: 1.5;
+
+  background-color: var(--bg);
+  color: var(--text);
+
+  overflow-x: hidden;
+}
+
+article {
+  padding-bottom: 8em;
+}
+
+/* === Heading & Text styling =============================================== */
+
+h1 {
+  font-size: var(--text-xxl);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  letter-spacing: -0.015em;
+  margin: 2em 0 1em;
+
+  text-decoration: underline solid currentColor 2px;
+}
+
+h3 {
+  font-size: var(--text-lg);
+  margin: 2em 0 1em;
+}
+
+div.note {
+  font-size: var(--text-sm);
+  background-color: var(--h100);
+  color: var(--text-light);
+  border-radius: var(--radius);
+
+  margin: 1em 0;
+  padding: 1em 1.5em;
+}
+
+div.note > * {
+  margin: 0;
+}
+
+a[href] {
+  color: var(--text-light);
+  text-decoration: none;
+  background-color: var(--h100);
+  border-radius: var(--radius);
+
+  margin: 0 -0.1em -0.1em;
+  padding: 0 0.25em 0.1em;
+}
+
+a[href]:hover {
+  background-color: var(--h300);
+}
+
+::selection {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+hr {
+  height: 2px;
+  border: 0;
+  color: var(--text-light);
+  background-color: currentColor;
+  border-radius: var(--radius);
+}
+
+/* === Code styling ========================================================= */
+
+code {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--text-light);
+  background-color: var(--h100);
+  border-radius: var(--radius);
+
+  margin: 0 -0.1em -0.1em;
+  padding: 0 0.25em 0.1em;
+}
+
+pre {
+  font-size: var(--text-code);
+  margin: 2em 0 3em;
+  padding: 1em 0 1em 1.5em;
+
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 -2px var(--bg), 6px 6px 0 0 currentColor;
+
+  overflow-x: auto;
+}
+
+pre > code {
+  background-color: transparent;
+
+  margin: 0 1.5em 0 0;
+  padding: 0;
+}
+
+/* === Image & Figure styling =============================================== */
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  margin: 1em 0;
+  text-align: center;
+  
+  display: grid;
+  justify-items: center;
+  gap: 0.5em;
+}
+
+figure > img {
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+}
+
+figcaption {
+  color: var(--text-light);
+  font-style: italic;
+  font-size: var(--text-sm);
+}

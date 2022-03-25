@@ -1,0 +1,60 @@
+@import "./breakpoints.scss";
+
+:root {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 450;
+
+  /* === Color theme ======================================================== */
+  --bg: hsl(0, 0%, 100%);
+  --bg-o75: hsla(0, 0%, 100%, 0.75);
+  --text: hsla(220, 50%, 8%, 0.9);
+  --text-light: hsla(205, 32%, 8%, 0.65);
+  --a700: hsl(220, 91%, 56%);
+  --a300: hsl(195, 100%, 58%);
+  --h100: hsl(205, 22%, 92%);
+  --h300: hsl(205, 22%, 82%);
+
+  /* === Type scale ========================================================= */
+  --text-base: 1rem;
+  --text-code: 0.875rem;
+  --text-scale-up-factor: 1.5;
+  --text-scale-dn-factor: 0.85;
+
+  --text-lg: calc(var(--text-base) * var(--text-scale-up-factor));
+  --text-xl: calc(var(--text-lg) * var(--text-scale-up-factor));
+  --text-xxl: calc(var(--text-xl) * var(--text-scale-up-factor));
+  
+  --text-sm: calc(var(--text-base) * var(--text-scale-dn-factor));
+  --text-xs: calc(var(--text-sm) * var(--text-scale-dn-factor));
+
+  @include respond-up("tablet") {
+    --text-base: 1.125rem;
+    --text-code: 1rem;
+  }
+
+  @include respond-up("desktop") {
+    --text-base: 1.25rem;
+    --text-code: 1.125rem;
+  }
+
+  /* === Misc. styles ======================================================= */
+
+  --radius: 4px;
+  --radius-sm: 1px;
+}
+
+:root.dark {
+  /* === Color theme ======================================================== */
+  --bg: hsl(220, 22%, 8%);
+  --bg-o75: hsla(220, 22%, 8%, 0.75);
+  --text: hsla(0, 0%, 100%, 0.95);
+  --text-light: hsla(0, 0%, 100%, 0.72);
+  --a700: hsl(220, 91%, 56%);
+  --a300: hsl(195, 100%, 58%);
+  --h100: hsl(205, 22%, 16%);
+  --h300: hsl(200, 16%, 28%);
+}
+
+:root.serif {
+  font-family: "IBM Plex Serif", serif;
+}

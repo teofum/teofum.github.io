@@ -1,0 +1,21 @@
+button {
+  font: inherit;
+  color: inherit;
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+
+  background-color: var(--bg);
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+  padding: 0.5em 1.5em;
+}
+
+button:hover {
+  background-color: var(--h100);
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
