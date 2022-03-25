@@ -304,7 +304,7 @@ For dithering, the matrix is normalized: every value is divided by `N × M`, so 
 
 The cross-hatch pattern produced by a bayer matrix can sometimes be desirable for aesthetic reasons, but might also be unwanted. In these cases, a threshold map without any discernible patterns would be best. Random white noise, as we've seen, doesn't work. Ideally we want something with as few “large scale” or low-frequency patterns as possible: blue noise.
 
-Generating blue noise is outside the scope of this article, but you can learn more [here](http://momentsingraphics.de/BlueNoise.html). For our purposes, we can just use pre-generated blue noise textures as a threshold map (the [linked site](http://momentsingraphics.de/BlueNoise.html) has plenty available to download). You can try out ordered dithering with a blue noise threshold map below:
+[Generating blue noise](http://momentsingraphics.de/BlueNoise.html) is outside the scope of this article. For our purposes, we can just use pre-generated blue noise textures as a threshold map (the [linked site](http://momentsingraphics.de/BlueNoise.html) has plenty available to download). You can try out ordered dithering with a blue noise threshold map below:
 
 <DemoOrdered type='blueNoise' sizes={{
   '16': '16 × 16',

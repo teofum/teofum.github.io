@@ -32,16 +32,18 @@ const Settings = () => {
         styles.container,
         { [ styles.expanded ]: expanded }
       )}>
-        <button className={styles.expandToggle}
+        <button className={styles.expandToggle} aria-label='Open/close settings'
           onClick={() => setExpanded(!expanded)}>
           <ExpandToggle toggled={expanded} />
         </button>
 
-        <button onClick={() => setDark(!dark)} style={{ '--n': 1 } as any}>
+        <button onClick={() => setDark(!dark)} aria-label='Theme toggle'
+          style={{ '--n': 1 } as any}>
           <ThemeToggle toggled={dark} />
         </button>
 
-        <button onClick={() => setSerif(!serif)} style={{ '--n': 2 } as any}>
+        <button onClick={() => setSerif(!serif)} aria-label='Font toggle'
+          style={{ '--n': 2 } as any}>
           <FontToggle toggled={serif} />
         </button>
       </div>
