@@ -70,7 +70,7 @@ const DemoPatternImage = ({
       return;
     }
 
-    if (loaded) {
+    if (loaded || img.complete) {
       const scaling = window.devicePixelRatio;
       const rect = canvas.getBoundingClientRect();
       const scaleX = rect.width * scaling / img.naturalWidth;
@@ -92,10 +92,8 @@ const DemoPatternImage = ({
         'bayerThreshold4'
       );
     } else {
-      const onload = () => setLoaded(img?.complete || false);
+      const onload = () => setLoaded(true);
       img.addEventListener('load', onload, { once: true });
-
-      return () => img?.removeEventListener('load', onload);
     }
   }, [canvas, img, pattern, size, loaded]);
 

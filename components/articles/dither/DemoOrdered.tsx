@@ -65,7 +65,7 @@ const DemoOrdered = ({ type, sizes, initial }: DemoOrderedProps) => {
       return;
     }
 
-    if (loaded) {
+    if (loaded || img.complete) {
       const scaling = window.devicePixelRatio;
       const rect = canvas.getBoundingClientRect();
       const scaleX = rect.width * scaling / img.naturalWidth;
@@ -84,10 +84,8 @@ const DemoOrdered = ({ type, sizes, initial }: DemoOrderedProps) => {
         `${type}Threshold${size}`
       );
     } else {
-      const onload = () => setLoaded(img?.complete || false);
+      const onload = () => setLoaded(true);
       img.addEventListener('load', onload, { once: true });
-
-      return () => img?.removeEventListener('load', onload);
     }
   }, [canvas, img, type, size, loaded]);
 
