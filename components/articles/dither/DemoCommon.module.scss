@@ -22,6 +22,7 @@
   border: 2px solid currentColor;
   border-radius: var(--radius);
   box-shadow: 6px 6px 0 -2px var(--bg), 6px 6px 0 0 currentColor;
+  box-sizing: content-box;
 
   overflow: hidden;
   position: relative;
