@@ -65,20 +65,7 @@ em {
   letter-spacing: 0.03em;
 }
 
-div.note {
-  font-size: var(--text-sm);
-  background-color: var(--h100);
-  color: var(--text-light);
-  border-radius: var(--radius);
-
-  margin: 1em 0;
-  padding: 1em 1.5em;
-}
-
-div.note > * {
-  margin: 0;
-}
-
+/* === Link styling ========================================================= */
 a[href] {
   color: var(--text-light);
   text-decoration: none;
@@ -93,17 +80,16 @@ a[href]:hover {
   background-color: var(--h300);
 }
 
-::selection {
-  background-color: var(--text);
-  color: var(--bg);
+/* === List styling ========================================================= */
+ul {
+  padding-left: 0;
+  list-style: '❯   ' outside;
+  margin: 2em 0;
 }
 
-hr {
-  height: 2px;
-  border: 0;
-  color: var(--text-light);
-  background-color: currentColor;
-  border-radius: var(--radius);
+ul > li,
+ol > li {
+  margin-bottom: 0.5em;
 }
 
 /* === Code styling ========================================================= */
@@ -162,4 +148,32 @@ figcaption {
   color: var(--text-light);
   font-style: italic;
   font-size: var(--text-sm);
+}
+
+/* === Miscellaneous styling ================================================ */
+hr {
+  height: 2px;
+  border: 0;
+  color: var(--text-light);
+  background-color: currentColor;
+  border-radius: var(--radius);
+}
+
+div.note {
+  font-size: var(--text-sm);
+  background-color: var(--h100);
+  color: var(--text-light);
+  border-radius: var(--radius);
+
+  margin: 1em 0;
+  padding: 1em 1.5em;
+}
+
+div.note > * {
+  margin: 0;
+}
+
+::selection {
+  background-color: var(--text);
+  color: var(--bg);
 }
