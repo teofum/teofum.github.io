@@ -180,7 +180,7 @@ const DemoThreshold = () => {
     const [w, h] = [canvas.width, canvas.height];
 
     const textColor = 'hsla(0, 0%, 100%, 0.95)';
-    const drawColor = 'hsla(40, 85%, 55%, 0.95)';
+    const drawColor = 'hsl(35, 85%, 55%)';
     ctx.lineWidth = 2 * scaling;
     ctx.lineCap = 'round';
 
