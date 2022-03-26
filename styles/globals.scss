@@ -61,6 +61,10 @@ h3 {
   margin: 2em 0 1em;
 }
 
+em {
+  letter-spacing: 0.03em;
+}
+
 div.note {
   font-size: var(--text-sm);
   background-color: var(--h100);
@@ -106,7 +110,7 @@ hr {
 
 code {
   font-family: "IBM Plex Mono", monospace;
-  color: var(--text-light);
+  color: var(--a500);
   background-color: var(--h100);
   border-radius: var(--radius);
 
@@ -127,6 +131,7 @@ pre {
 }
 
 pre > code {
+  color: var(--text-light);
   background-color: transparent;
 
   margin: 0 1.5em 0 0;
