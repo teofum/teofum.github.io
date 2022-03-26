@@ -1,9 +1,11 @@
 @import '../../../styles/breakpoints.scss';
 
 .container {
-  margin: 2em 0;
+  margin: 3em 0;
+  max-width: 100%;
 
   display: grid;
+  grid-template-columns: 100%;
   justify-items: center;
   justify-content: center;
   gap: 1.5rem;
@@ -17,7 +19,7 @@
 .demoFrame {
   width: 15em;
   max-width: 100%;
-  margin: 0 auto;
+  margin: -2px;
 
   border: 2px solid currentColor;
   border-radius: var(--radius);
@@ -35,11 +37,11 @@
 }
 
 .demoFrame.wide {
-  width: 20em;
+  width: 22.5em;
 }
 
 .demoFrame.wide::before {
-  padding-bottom: 66.67%;
+  padding-bottom: calc(200% / 3);
 }
 
 .canvas,

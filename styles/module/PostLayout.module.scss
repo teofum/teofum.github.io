@@ -25,12 +25,13 @@
 
 .header {
   border-bottom: 2px solid currentColor;
+  margin-bottom: -2px;
 
-  padding-top: 6rem;
-  padding-bottom: 1rem;
+  padding-top: 6em;
+  padding-bottom: 1.5em;
 
   @include respond-up("tablet-sm") {
-    padding-top: 12rem;
+    padding-top: 9em;
   }
 }
 

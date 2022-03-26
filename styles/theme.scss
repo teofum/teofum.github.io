@@ -19,9 +19,9 @@
   --text-scale-up-factor: 1.5;
   --text-scale-dn-factor: 0.85;
 
-  --text-lg: calc(var(--text-base) * var(--text-scale-up-factor));
-  --text-xl: calc(var(--text-lg) * var(--text-scale-up-factor));
-  --text-xxl: calc(var(--text-xl) * var(--text-scale-up-factor));
+  --text-lg: 1.5em;
+  --text-xl: 2.5em;
+  --text-xxl: 4em;
   
   --text-sm: calc(var(--text-base) * var(--text-scale-dn-factor));
   --text-xs: calc(var(--text-sm) * var(--text-scale-dn-factor));
