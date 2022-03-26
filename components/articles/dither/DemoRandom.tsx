@@ -35,7 +35,7 @@ void main() {
 const DemoThreshold = () => {
   const [loaded, setLoaded] = useState(false);
   const [t, setT] = useState(0.5);
-  const [k, setK] = useState(1);
+  const [k, setK] = useState(0.5);
   const [original, setOriginal] = useState(false);
 
   let canvas: HTMLCanvasElement | null = null;
@@ -93,15 +93,10 @@ const DemoThreshold = () => {
       </div>
 
       <div className={demoStyles.controls}>
-        <label>
-          <span><code>t={t.toFixed(2)}</code></span>
-          <input type='range' value={t} min={0} max={1} step={0.01}
-            onChange={e => setT(parseFloat(e.target.value))} />
-        </label>
 
         <label>
           <span><code>k={k.toFixed(2)}</code></span>
-          <input type='range' value={k} min={0} max={1} step={0.01}
+          <input type='range' autoComplete='off' value={k} min={0} max={1} step={0.01}
             onChange={e => setK(parseFloat(e.target.value))} />
         </label>
 

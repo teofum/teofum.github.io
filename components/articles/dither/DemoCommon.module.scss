@@ -44,6 +44,12 @@
   padding-bottom: calc(200% / 3);
 }
 
+.demoFrame.noBorder {
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+
 .canvas,
 .demoContent {
   position: absolute;
@@ -72,6 +78,11 @@
   gap: 1rem;
 
   font-weight: 700;
+}
+
+.controls > label code {
+  font-weight: 450;
+  font-style: italic;
 }
 
 .controls > label.withValueLabel {

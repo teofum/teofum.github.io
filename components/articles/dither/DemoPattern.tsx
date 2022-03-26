@@ -82,13 +82,13 @@ const DemoPattern = ({
         {showZoom &&
           <label>
             Zoom
-            <input type='range' value={zoom} min={0} max={1} step={0.005}
+            <input type='range' autoComplete='off' value={zoom} min={0} max={1} step={0.005}
               onChange={e => setZoom(parseFloat(e.target.value))} />
           </label>}
         {showRatio &&
           <label>
             {showRatio}
-            <input type='range' value={ratio} min={0} max={16} step={1}
+            <input type='range' autoComplete='off' value={ratio} min={0} max={16} step={1}
               onChange={e => setRatio(parseInt(e.target.value))} />
           </label>}
       </div>

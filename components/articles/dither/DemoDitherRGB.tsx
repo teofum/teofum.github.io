@@ -125,24 +125,24 @@ const DemoDitherRGB = ({
       <div className={demoStyles.controls}>
         <label>
           Zoom
-          <input type='range' value={zoom} min={0} max={1} step={0.005}
+          <input type='range' autoComplete='off' value={zoom} min={0} max={1} step={0.005}
             onChange={e => setZoom(parseFloat(e.target.value))} />
         </label>
         <label>
           Red
-          <input type='range' value={red} min={0} max={1} step={1/256}
+          <input type='range' autoComplete='off' value={red} min={0} max={1} step={1/256}
             style={{ '--progress-color': `rgb(${red * 255},0,0)` } as any}
             onChange={e => setRed(parseFloat(e.target.value))} />
         </label>
         <label>
           Green
-          <input type='range' value={green} min={0} max={1} step={1/256}
+          <input type='range' autoComplete='off' value={green} min={0} max={1} step={1/256}
             style={{ '--progress-color': `rgb(0,${green * 255},0)` } as any}
             onChange={e => setGreen(parseFloat(e.target.value))} />
         </label>
         <label>
           Blue
-          <input type='range' value={blue} min={0} max={1} step={1/256}
+          <input type='range' autoComplete='off' value={blue} min={0} max={1} step={1/256}
             style={{ '--progress-color': `rgb(0,0,${blue * 255})` } as any}
             onChange={e => setBlue(parseFloat(e.target.value))} />
         </label>

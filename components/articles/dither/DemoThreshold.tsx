@@ -87,7 +87,7 @@ const DemoThreshold = () => {
       <div className={demoStyles.controls}>
         <label>
           <span><code>t={t.toFixed(2)}</code></span>
-          <input type='range' value={t} min={0} max={1} step={0.01}
+          <input type='range' autoComplete='off' value={t} min={0} max={1} step={0.01}
             onChange={e => setT(parseFloat(e.target.value))} />
         </label>
 

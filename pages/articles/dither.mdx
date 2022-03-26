@@ -3,6 +3,7 @@ import DemoDitherZoom from '../../components/articles/dither/DemoDitherZoom';
 import DemoDitherRGB from '../../components/articles/dither/DemoDitherRGB';
 import DemoThreshold from '../../components/articles/dither/DemoThreshold';
 import DemoRandom from '../../components/articles/dither/DemoRandom';
+import DemoRandomGraph from '../../components/articles/dither/DemoRandomGraph';
 import DemoPattern from '../../components/articles/dither/DemoPattern';
 import DemoPatternImage from '../../components/articles/dither/DemoPatternImage';
 import DemoOrdered from '../../components/articles/dither/DemoOrdered';
@@ -74,7 +75,7 @@ Dithering algorithms will be presented in pseudocode along an interactive demons
 
 * `input` and `output` are image buffers. Pixels are read and set by `[x, y]` coordinates.
 * Images are assumed to be grayscale unless otherwise specified. Grayscale pixel values are referred to as `value` and treated as numbers, while color pixel values are referred to as `color` and have `r`, `g`, and `b` number members.
-* Values (grayscale or RGB) are in the range [0, 1].
+* Values (grayscale or RGB) are in the range [0, 1].
 
 The interactive demos will use this grayscale image:
 
@@ -101,6 +102,8 @@ Where `t` is the threshold that controls whether a certain value should resolve 
 
 <DemoThreshold />
 
+When dithering, we'll always use a balanced threshold value of 0.5.
+
 ## Random dithering
 
 This is the simplest form of dithering: it just adds random noise to the image before reducing the colors. Random noise dithering code might look something like this:
@@ -115,6 +118,16 @@ for (x, y) in input
 The parameter `k` controls the amplitude or “amount” of noise applied to the image. You can try it out below:
 
 <DemoRandom />
+
+This works because we're adding some “fuzziness” to the image, making some pixels pass the threshold when they normally wouldn't. Below is a visual demonstration of how noise dithering works.
+
+The graph takes a one-dimensional “slice” of an image and placing brightness along the y axis. The *`white line`* indicates the threshold, while the points connected by the `orange line` represent points in the image. The color of each point is its value after thresholding. The *target* box shows the “real” color, while the “sample average” box shows the average of all sampled points *after* thresholding:
+
+As you can see, for the initial brightness level of 35% the sample average is black, because 35% is less than the 50% threshold and so *all* points become black. Try adding some noise by dragging the `k` slider all the way to the right:
+
+<DemoRandomGraph />
+
+As you add noise, some points go above the threshold and become white, bringing the average closer to the original 35% gray. Because the noise is “centered” around the original brightness, the average value will tend to get closer to the value as you add more samples. Try playing around with different brightness levels, noise levels, and sample sizes before moving on.
 
 The problem with this approach becomes clear by looking at the results: among other things, it just looks bad. While adding random noise does help approximate the right proportions of black and white for each part of the image, it drowns out most details and the results are, expectedly, noisy. We can do better.
 
@@ -136,7 +149,7 @@ for (x, y) in input
   errorMap[x, y + 1] = error / 2
 ```
 
-The result looks like this:
+The result looks like this (Click to view in detail):
 
 <ImageGrid pixelated noScroll images={[
   {
@@ -224,19 +237,19 @@ An ordered dithering algorithm solves the problems of error diffusion by making 
 for (x, y) in input
   value = input[x, y]
   noise = k * (random(0, 1) - 0.5)
-  output[x, y] = if (value + noise < t) 0; else 1
+  output[x, y] = if (value + noise < 0.5) 0; else 1
 ```
 
 <DemoRandom />
 
-This algorithm is *stateless*: it doesn't keep any internal state, and operates on each pixel independently. In other words, there's no code outside the main pixel loop.
+This algorithm is stateless: it doesn't keep any internal state, and operates on each pixel independently. In other words, there's no code outside the main pixel loop.
 
 This example can be rewritten to think of the noise as adding to the *threshold*, rather than the input:
 ```
 for (x, y) in input
   value = input[x, y]
   noise = k * (random(0, 1) - 0.5)
-  threshold = t + noise
+  threshold = 0.5 + noise
   output[x, y] = if (value < threshold) 0; else 1
 ```
 
@@ -251,7 +264,7 @@ for (x, y) in input
   output[x, y] = if (value < threshold) 0; else 1
 ```
 
-We also lose the parameters `t` and `k`, which control the noise profile in the previous example. Here, the threshold map provides all the information we need.
+We also lose the parameter `k`, which controls the noise profile in the previous example. Here, the threshold map provides all the information we need.
 
 The threshold map doesn't need to be the same size as the image: it is “tiled” as many times as necessary in both dimensions. This leaves only the matter of filling our threshold map with some values.
 
