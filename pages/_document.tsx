@@ -5,6 +5,7 @@ const Document = () => {
     <Html lang='en' className='no-transitions'>
       <Head>
         <meta name='description' content='My website :)' />
+        <link rel='icon' href='/favicon.svg' />
       </Head>
       <body>
         <Main />
