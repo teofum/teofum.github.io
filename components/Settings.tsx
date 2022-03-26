@@ -20,10 +20,16 @@ const Settings = () => {
   }, []);
 
   useEffect(() => {
-    document.documentElement.className = cn({
-      dark: dark,
-      serif: serif
-    });
+    const html = document.documentElement;
+    
+    if (dark) html.classList.add('dark');
+    else html.classList.remove('dark');
+    
+    if (serif) html.classList.add('serif');
+    else html.classList.remove('serif');
+
+    // Enable transitions with a delay, removes the white flash on load with dark theme
+    setTimeout(() => html.classList.remove('no-transitions'), 500);
   }, [dark, serif]);
 
   return (

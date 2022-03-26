@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 const Document = () => {
   return (
-    <Html lang='en'>
+    <Html lang='en' className='no-transitions'>
       <Head>
         <meta name='description' content='My website :)' />
       </Head>
