@@ -70,9 +70,9 @@ p {
 
 /* === Link styling ========================================================= */
 a[href] {
-  color: var(--text-light);
+  color: var(--a500);
   text-decoration: none;
-  background-color: var(--h100);
+  background-color: var(--a100);
   border-radius: var(--radius);
 
   margin: 0 -0.1em -0.1em;
@@ -80,7 +80,7 @@ a[href] {
 }
 
 a[href]:hover {
-  background-color: var(--h300);
+  background-color: var(--a300);
 }
 
 /* === List styling ========================================================= */
