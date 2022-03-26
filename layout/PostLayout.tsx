@@ -7,6 +7,7 @@ import PostMeta from '../types/PostMeta';
 
 import styles from '../styles/module/PostLayout.module.scss';
 import Head from 'next/head';
+import ScrollProgress from '../components/ScrollProgress';
 
 interface PostLayoutProps {
   meta: PostMeta;
@@ -28,6 +29,8 @@ const PostLayout = ({ meta, children }: PostLayoutProps) => {
           <h1>{meta.title}</h1>
         </div>
       </header>
+
+      <ScrollProgress />
 
       <aside className={cn(styles.mainContent, styles.settings)}>
         <Settings />

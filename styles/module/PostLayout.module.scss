@@ -33,6 +33,11 @@
   @include respond-up("tablet-sm") {
     padding-top: 9em;
   }
+
+  // Makes the header cover the scroll progress bar
+  position: relative;
+  z-index: 20;
+  background-color: var(--bg);
 }
 
 .settings {
