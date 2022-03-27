@@ -9,9 +9,9 @@ export const SettingsCtx = React.createContext<{
   setSerif: (v: boolean) => void
 }>({
   dark: false,
-  setDark: () => {return;},
+  setDark: () => { return; },
   serif: false,
-  setSerif: () => {return;}
+  setSerif: () => { return; }
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -28,16 +28,19 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const html = document.documentElement;
 
-    if (dark) html.classList.add('dark');
-    else html.classList.remove('dark');
+    if (dark) {
+      html.classList.remove('light');
+      html.classList.add('dark');
+    }
+    else {
+      html.classList.remove('dark');
+      html.classList.add('light');
+    }
 
     if (serif) html.classList.add('serif');
     else html.classList.remove('serif');
-
-    // Enable transitions with a delay, removes the white flash on load with dark theme
-    setTimeout(() => html.classList.remove('no-transitions'), 500);
   }, [dark, serif]);
-  
+
   return (
     <SettingsCtx.Provider value={{ dark, setDark, serif, setSerif }}>
       <Component {...pageProps} />

@@ -59,8 +59,8 @@
   }
 }
 
-:root.dark {
-  /* === Color theme ======================================================== */
+@mixin dark {
+  /* === Dark theme ========================================================= */
   --bg: hsl(235, 15%, 8%);
   --bg-o75: hsla(235, 15%, 8%, 0.75);
   --text: hsla(0, 0%, 100%, 0.95);
@@ -70,6 +70,16 @@
   --a500: hsl(345, 82%, 58%);
   --h100: hsl(220, 22%, 16%);
   --h300: hsl(215, 34%, 28%);
+}
+
+:root.dark {
+  @include dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    @include dark; // Default to dark theme
+  }
 }
 
 :root.serif article {

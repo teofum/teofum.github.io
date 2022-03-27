@@ -17,12 +17,6 @@
   transition-duration: var(--anim-s);
 }
 
-.no-transitions *,
-.no-transitions *::before,
-.no-transitions *::after {
-  transition-property: none !important;
-}
-
 body {
   padding: 0;
   margin: 0;

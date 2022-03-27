@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 const Document = () => {
   return (
-    <Html lang='en' className='no-transitions'>
+    <Html lang='en'>
       <Head>
         <meta name='description' content='My website :)' />
         <link rel='icon' href='/favicon.svg' />
