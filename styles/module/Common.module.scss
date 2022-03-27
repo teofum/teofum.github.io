@@ -1,19 +1,6 @@
 @import "../breakpoints.scss";
 
 /* === Layout styling ======================================================= */
-
-.layoutRoot {
-  --padding: 2rem;
-
-  @include respond-up("tablet-sm") {
-    --padding: 4rem;
-  }
-
-  @include respond-up("desktop") {
-    --padding: 8rem;
-  }
-}
-
 .mainContent {
   padding: 0 var(--padding);
 }
@@ -45,4 +32,34 @@
   top: 2em;
   height: 0;
   z-index: 50;
+}
+
+.bigLinks {
+  padding-top: 4.5em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.bigLinks a[href] {
+  font-size: var(--text-xxl);
+  font-weight: 700;
+  line-height: calc(4 / 3);
+  letter-spacing: -0.03em;
+  padding: 0;
+
+  background: none;
+  color: var(--text);
+
+  transform-origin: left;
+  transform: scale(1);
+  transition-property: color, padding, transform;
+  transition-duration: var(--anim-m);
+}
+
+.bigLinks a[href]:hover {
+  color: var(--a500);
+  padding-left: 0.25em;
+  transform: scale(1.1);
 }

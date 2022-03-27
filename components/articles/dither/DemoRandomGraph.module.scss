@@ -16,7 +16,7 @@
 }
 
 .colorPreview > div {
-  transition-duration: 50ms;
+  transition-duration: var(--anim-xs);
   border-bottom: 2px solid currentColor;
 }
 

@@ -1,13 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
-import cn from 'classnames';
 
+import BaseLayout from './BaseLayout';
 import Paragraph from '../components/Paragraph';
-import Settings from '../components/Settings';
-import PostMeta from '../types/PostMeta';
-
-import styles from '../styles/module/PostLayout.module.scss';
-import Head from 'next/head';
 import ScrollProgress from '../components/ScrollProgress';
+import { articleSettings } from '../components/Settings';
+
+import PostMeta from '../types/PostMeta';
+import { articlesCrumb, homeCrumb } from '../types/Crumbs';
 
 interface PostLayoutProps {
   meta: PostMeta;
@@ -20,30 +19,15 @@ const components = {
 
 const PostLayout = ({ meta, children }: PostLayoutProps) => {
   return (
-    <div className={styles.layoutRoot}>
-      <Head>
-        <title>{meta.title}</title>
-      </Head>
-      <header className={cn(styles.mainContent, styles.header)}>
-        <div className={styles.headerContent}>
-          <h1>{meta.title}</h1>
-        </div>
-      </header>
-
+    <BaseLayout title={meta.title} crumbs={[ homeCrumb, articlesCrumb ]}
+      settings={articleSettings}>
       <ScrollProgress />
-
-      <aside className={cn(styles.mainContent, styles.settings)}>
-        <Settings />
-      </aside>
-
       <MDXProvider components={components}>
-        <main className={styles.mainContent}>
-          <article>
-            {children}
-          </article>
-        </main>
+        <article>
+          {children}
+        </article>
       </MDXProvider>
-    </div>
+    </BaseLayout>
   );
 };
 

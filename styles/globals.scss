@@ -14,7 +14,7 @@
 
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
   transition-timing-function: ease-out;
-  transition-duration: 150ms;
+  transition-duration: var(--anim-s);
 }
 
 .no-transitions *,

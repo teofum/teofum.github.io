@@ -92,5 +92,5 @@ div.enterDone {
 .exitDone {
   transition-property: opacity, backdrop-filter;
   transition-timing-function: ease;
-  transition-duration: 250ms;
+  transition-duration: var(--anim-m);
 }
