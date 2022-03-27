@@ -23,10 +23,14 @@
 
   --text-lg: 1.5em;
   --text-xl: 2.5em;
-  --text-xxl: 4em;
+  --text-xxl: 3em;
   
   --text-sm: calc(var(--text-base) * var(--text-scale-dn-factor));
   --text-xs: calc(var(--text-sm) * var(--text-scale-dn-factor));
+
+  @include respond-up('tablet-sm') {
+    --text-xxl: 4em;
+  }
 
   @include respond-up("tablet") {
     --text-base: 1.125rem;

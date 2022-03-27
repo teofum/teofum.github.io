@@ -41,7 +41,11 @@ h1 {
   font-size: var(--text-xxl);
   line-height: 1;
   letter-spacing: -0.03em;
-  margin: 0.75em 0;
+  margin: 1em 0;
+  
+  @include respond-up('tablet-sm') {
+    margin: 0.75em 0;
+  }
 }
 
 h2 {

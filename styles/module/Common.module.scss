@@ -45,9 +45,14 @@
 .bigLinks a[href] {
   font-size: var(--text-xxl);
   font-weight: 700;
-  line-height: calc(4 / 3);
+  line-height: 1;
   letter-spacing: -0.03em;
   padding: 0;
+  margin-bottom: 0.5em;
+  
+  @include respond-up('tablet-sm') {
+    margin-bottom: 0.375em;
+  }
 
   background: none;
   color: var(--text);
