@@ -37,7 +37,7 @@
   margin: 0;
 }
 
-.grid > figure > img,
+.grid > figure > picture,
 .viewOverlay {
   cursor: pointer;
 }
@@ -64,7 +64,7 @@
   color: var(--text);
 }
 
-.pixelated .viewOverlay img {
+.pixelated .viewOverlay picture {
   image-rendering: pixelated;
   box-sizing: content-box;
 }

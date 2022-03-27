@@ -4,7 +4,9 @@ import cn from 'classnames';
 
 import styles from '../styles/module/ImageGrid.module.scss';
 
-type ImageDef = { src: string, alt: string, caption?: string };
+type ImageFormat = 'webp' | 'jpeg' | 'png' | 'gif';
+type ImageDef = { src: string, formats: ImageFormat[], alt: string, caption?: string };
+
 interface ImageGridProps {
   images: ImageDef[];
   minSize?: string;
@@ -15,6 +17,16 @@ interface ImageGridProps {
 const getScaleFactor = () => {
   const scaling = window.devicePixelRatio;
   return Math.round(scaling) / scaling;
+};
+
+const sources = (img: ImageDef, size?: number) => {
+  const fallback = img.formats[img.formats.length - 1];
+  return img.formats
+    .map(format => (
+      <source key={format} srcSet={`${img.src}.${format}`}
+        type={`image/${format}`} />
+    ))
+    .concat(<img src={`${img.src}.${fallback}`} alt={img.alt} width={size} />);
 };
 
 const ImageGrid = ({ images, minSize, pixelated, noScroll }: ImageGridProps) => {
@@ -32,12 +44,15 @@ const ImageGrid = ({ images, minSize, pixelated, noScroll }: ImageGridProps) => 
       style={{ '--min-size': minSize } as any}>
       {images.map((img, i) => (
         <figure key={i}>
-          <img src={img.src} alt={img.alt}
+          <picture
             onClick={e => {
               const w = (e.target as HTMLImageElement).naturalWidth;
               setView(img);
               setViewSize(w * (pixelated ? getScaleFactor() : 1));
-            }} />
+            }}>
+
+            {sources(img)}
+          </picture>
           {img.caption && <figcaption>{img.caption}</figcaption>}
         </figure>
       ))}
@@ -51,7 +66,9 @@ const ImageGrid = ({ images, minSize, pixelated, noScroll }: ImageGridProps) => 
                 Click anywhere to close
               </div>
               <figure className={styles.viewFigure}>
-                <img src={view.src} alt={view.alt} width={viewSize} />
+                <picture>
+                  {sources(view, viewSize)}
+                </picture>
                 {view.caption && <figcaption>{view.caption}</figcaption>}
               </figure>
             </div>

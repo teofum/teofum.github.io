@@ -103,9 +103,12 @@ const DemoPatternImage = ({
         demoStyles.demoFrame,
         demoStyles.wide
       )}>
-        <img src='/content/articles/dither/tram-original.webp'
-          alt='Original image' ref={el => img = el}
-          className={demoStyles.demoContent} />
+        <picture className={demoStyles.demoContent}>
+          <source srcSet='/content/articles/dither/tram-original.webp' type='image/webp' />
+          <source srcSet='/content/articles/dither/tram-original.jpeg' type='image/jpeg' />
+          <img src='/content/articles/dither/tram-original.jpeg'
+            alt='Original image' ref={el => img = el} />
+        </picture>
         <canvas className={demoStyles.canvas}
           ref={el => canvas = el} />
       </div>

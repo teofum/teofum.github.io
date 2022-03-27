@@ -138,6 +138,14 @@ img {
   max-width: 100%;
 }
 
+picture {
+  display: flex;
+}
+
+picture > img {
+  object-fit: cover;
+}
+
 figure {
   margin: 1em 0;
   text-align: center;
@@ -147,7 +155,8 @@ figure {
   gap: 0.5em;
 }
 
-figure > img {
+figure > img,
+figure > picture {
   border: 2px solid currentColor;
   border-radius: var(--radius);
 }

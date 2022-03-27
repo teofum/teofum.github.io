@@ -48,17 +48,20 @@ In these low-color scenarios, dithering helps reduce color banding and effective
 
 <ImageGrid pixelated images={[
   {
-    src: '/content/articles/dither/boat-original.webp',
+    src: '/content/articles/dither/boat-original',
+    formats: ['webp', 'jpeg'],
     alt: 'Original image',
     caption: '24-bit “true color”'
   },
   {
-    src: '/content/articles/dither/boat-web.webp',
+    src: '/content/articles/dither/boat-web',
+    formats: ['webp', 'jpeg'],
     alt: 'Web safe image',
     caption: 'Web safe palette (216 colors)'
   },
   {
-    src: '/content/articles/dither/boat-web-dither.webp',
+    src: '/content/articles/dither/boat-web-dither',
+    formats: ['webp', 'jpeg'],
     alt: 'Dithered image',
     caption: 'Web safe palette, dithered'
   }
@@ -80,7 +83,8 @@ The interactive demos will use this grayscale image:
 
 <ImageGrid noScroll images={[
   {
-    src: '/content/articles/dither/tram-original.webp',
+    src: '/content/articles/dither/tram-original',
+    formats: ['webp', 'jpeg'],
     alt: 'Original image'
   }
 ]} />
@@ -152,12 +156,14 @@ The result looks like this (Click to view in detail):
 
 <ImageGrid pixelated noScroll images={[
   {
-    src: '/content/articles/dither/tram-original.webp',
+    src: '/content/articles/dither/tram-original',
+    formats: ['webp', 'jpeg'],
     alt: 'Original image',
     caption: 'Original image'
   },
   {
-    src: '/content/articles/dither/tram-ed-simple.webp',
+    src: '/content/articles/dither/tram-ed-simple',
+    formats: ['webp', 'jpeg'],
     alt: 'Error Diffusion dithered',
     caption: 'Error Diffusion dithering'
   }
@@ -180,22 +186,26 @@ In practice, more complex diffusion patterns are used to achieve better results.
 
 <ImageGrid minSize='30ch' pixelated images={[
   {
-    src: '/content/articles/dither/tram-ed-fs.webp',
+    src: '/content/articles/dither/tram-ed-fs',
+    formats: ['webp', 'jpeg'],
     alt: 'Floyd-Steinberg',
     caption: 'Floyd-Steinberg'
   },
   {
-    src: '/content/articles/dither/tram-ed-jjn.webp',
+    src: '/content/articles/dither/tram-ed-jjn',
+    formats: ['webp', 'jpeg'],
     alt: 'Minimum Average Error',
     caption: 'Minimum Average Error'
   },
   {
-    src: '/content/articles/dither/tram-ed-stucki.webp',
+    src: '/content/articles/dither/tram-ed-stucki',
+    formats: ['webp', 'jpeg'],
     alt: 'Stucki',
     caption: 'Stucki'
   },
   {
-    src: '/content/articles/dither/tram-ed-sierra.webp',
+    src: '/content/articles/dither/tram-ed-sierra',
+    formats: ['webp', 'jpeg'],
     alt: 'Sierra',
     caption: 'Sierra'
   }
@@ -205,7 +215,8 @@ Error diffusion is a much better algorithm than simple random noise, and is ofte
 
 <ImageGrid pixelated noScroll images={[
   {
-    src: '/content/articles/dither/flower.webp',
+    src: '/content/articles/dither/flower',
+    formats: ['webp', 'jpeg'],
     alt: 'Error dithering artifacts'
   }
 ]} />
@@ -216,12 +227,14 @@ Also because of this, it doesn't work very well for animation or video, as a sin
 
 <ImageGrid pixelated noScroll images={[
   {
-    src: '/content/articles/dither/tram-motion-original.webp',
+    src: '/content/articles/dither/tram-motion-original',
+    formats: ['gif'],
     alt: 'Error dithering animation',
     caption: 'Original animation, with a single moving pixel'
   },
   {
-    src: '/content/articles/dither/tram-motion-ed.webp',
+    src: '/content/articles/dither/tram-motion-ed',
+    formats: ['webp', 'gif'],
     alt: 'Error dithering animation',
     caption: 'Noise patterns shift throughout the image'
   }

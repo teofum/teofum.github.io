@@ -1,0 +1,20 @@
+@import "../breakpoints.scss";
+
+.top {
+  text-decoration: none;
+  font-weight: 450;
+  font-size: var(--text);
+  margin-top: 4.5em;
+}
+
+.top > div {
+  font-size: var(--text-xl);
+}
+
+.top > .title {
+  font-size: var(--text-xxl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
