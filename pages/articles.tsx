@@ -25,7 +25,7 @@ const Articles = ({ articles }: ArticlesProps) => {
 export const getStaticProps = async () => {
   const articles = [
     {
-      title: 'Dithering: a visual introduction',
+      title: 'Dithering: a visual introduction',
       path: '/articles/dither'
     }
   ];
