@@ -11,6 +11,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
   transition-timing-function: ease-out;
