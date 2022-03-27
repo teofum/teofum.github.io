@@ -1,10 +1,9 @@
 import '../styles/globals.scss';
 import React, { useEffect, useState } from 'react';
+//import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
-import { CSSTransition, Transition, TransitionGroup } from 'react-transition-group';
-
-import transitionStyles from '../styles/module/Transition.module.scss';
-import { useRouter } from 'next/router';
+//import { CSSTransition, TransitionGroup } from 'react-transition-group';
+//import transitionStyles from '../styles/module/Transition.module.scss';
 
 export const SettingsCtx = React.createContext<{
   dark: boolean,
@@ -22,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [dark, setDark] = useState(false);
   const [serif, setSerif] = useState(false);
 
-  const { pathname } = useRouter();
+  //const { pathname } = useRouter();
 
   useEffect(() => {
     setDark(
@@ -49,14 +48,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <SettingsCtx.Provider value={{ dark, setDark, serif, setSerif }}>
-      <TransitionGroup>
-        <CSSTransition key={pathname} timeout={15000}
-          classNames={{ ...transitionStyles }}>
-          <Component {...pageProps} />
-        </CSSTransition>
-      </TransitionGroup>
+      <Component {...pageProps} />
     </SettingsCtx.Provider>
   );
 }
 
 export default MyApp;
+
+/*
+<TransitionGroup>
+  <CSSTransition key={pathname} timeout={500}
+    classNames={{ ...transitionStyles }}>
+    <Component {...pageProps} />
+  </CSSTransition>
+</TransitionGroup>
+*/
