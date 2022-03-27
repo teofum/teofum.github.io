@@ -18,25 +18,25 @@ const BaseLayout = ({ title, crumbs, settings, children }: BaseLayoutProps) => {
   const showSettings = settings || defaultSettings;
 
   return (
-    <div className={commonStyles.layoutRoot}>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <header className={cn(commonStyles.mainContent, commonStyles.header)}>
-        <div className={commonStyles.headerContent}>
-          {crumbs && <Crumbs crumbs={crumbs} />}
-          <h1>{title}</h1>
-        </div>
-      </header>
+      <div className={commonStyles.layoutRoot}>
+        <Head>
+          <title>{title}</title>
+        </Head>
+        <header className={cn(commonStyles.mainContent, commonStyles.header)}>
+          <div className={commonStyles.headerContent}>
+            {crumbs && <Crumbs crumbs={crumbs} />}
+            <h1>{title}</h1>
+          </div>
+        </header>
 
-      <aside className={cn(commonStyles.mainContent, commonStyles.settings)}>
-        <Settings show={showSettings} />
-      </aside>
+        <aside className={cn(commonStyles.mainContent, commonStyles.settings)}>
+          <Settings show={showSettings} />
+        </aside>
 
-      <main className={commonStyles.mainContent}>
-        {children}
-      </main>
-    </div>
+        <main className={commonStyles.mainContent}>
+          {children}
+        </main>
+      </div>
   );
 };
 

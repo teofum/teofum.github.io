@@ -1,6 +1,10 @@
 import '../styles/globals.scss';
 import React, { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
+import { CSSTransition, Transition, TransitionGroup } from 'react-transition-group';
+
+import transitionStyles from '../styles/module/Transition.module.scss';
+import { useRouter } from 'next/router';
 
 export const SettingsCtx = React.createContext<{
   dark: boolean,
@@ -17,6 +21,8 @@ export const SettingsCtx = React.createContext<{
 function MyApp({ Component, pageProps }: AppProps) {
   const [dark, setDark] = useState(false);
   const [serif, setSerif] = useState(false);
+
+  const { pathname } = useRouter();
 
   useEffect(() => {
     setDark(
@@ -43,7 +49,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <SettingsCtx.Provider value={{ dark, setDark, serif, setSerif }}>
-      <Component {...pageProps} />
+      <TransitionGroup>
+        <CSSTransition key={pathname} timeout={15000}
+          classNames={{ ...transitionStyles }}>
+          <Component {...pageProps} />
+        </CSSTransition>
+      </TransitionGroup>
     </SettingsCtx.Provider>
   );
 }

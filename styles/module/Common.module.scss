@@ -1,6 +1,10 @@
 @import "../breakpoints.scss";
 
 /* === Layout styling ======================================================= */
+.layoutRoot {
+  min-height: 100vh;
+}
+
 .mainContent {
   padding: 0 var(--padding);
 }
