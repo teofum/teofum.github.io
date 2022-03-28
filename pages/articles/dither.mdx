@@ -124,7 +124,7 @@ The parameter `k` controls the amplitude or “amount” of noise applied to the
 
 This works because we're adding some “fuzziness” to the image, making some pixels pass the threshold when they normally wouldn't. Below is a visual demonstration of how noise dithering works.
 
-The graph takes a one-dimensional “slice” of an image and placing brightness along the y axis. The *`white line`* indicates the threshold, while the points connected by the `red line` represent points in the image. The color of each point is its value after thresholding. The *target* box shows the “real” color, while the “sample average” box shows the average of all sampled points *after* thresholding:
+The graph takes a one-dimensional “slice” of a flat gray color shown in the “target” box, placing brightness along the y axis. The *`white line`* indicates the threshold, while the points connected by the `red line` represent points in the image. The color of each point is its value after thresholding. The “sample average” box shows the average of all sampled points *after* thresholding.
 
 As you can see, for the initial brightness level of 35% the sample average is black, because 35% is less than the 50% threshold and so *all* points become black. Try adding some noise by dragging the `k` slider all the way to the right:
 
