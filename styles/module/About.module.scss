@@ -18,3 +18,34 @@
   letter-spacing: -0.03em;
   margin: 0;
 }
+
+.about {
+  @include respond-up('tablet-sm') {
+    display: grid;
+    grid-template-columns: 42ch 1fr;
+
+    height: 100%;
+  }
+}
+
+.image {
+  display: none;
+
+  @include respond-up('tablet-sm') {
+    display: grid;
+    place-items: end;
+
+    padding-top: 3em;
+  }
+}
+
+.image img {
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
+}
+
+:global(.dark) .image img {
+  mix-blend-mode: screen;
+  filter: contrast(1.15);
+}
