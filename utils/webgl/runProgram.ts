@@ -53,7 +53,6 @@ const drawImageWithShader = (
 
   // Invalidate cache
   if (cache.lastCtx !== gl) {
-    console.log(cache.lastCtx);
     cache.program = null;
   }
 
