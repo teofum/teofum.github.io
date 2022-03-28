@@ -26,7 +26,10 @@ const sources = (img: ImageDef, size?: number) => {
       <source key={format} srcSet={`${img.src}.${format}`}
         type={`image/${format}`} />
     ))
-    .concat(<img src={`${img.src}.${fallback}`} alt={img.alt} width={size} />);
+    .concat(
+      <img key='fallback' src={`${img.src}.${fallback}`}
+        alt={img.alt} width={size} />
+    );
 };
 
 const ImageGrid = ({ images, minSize, pixelated, noScroll }: ImageGridProps) => {

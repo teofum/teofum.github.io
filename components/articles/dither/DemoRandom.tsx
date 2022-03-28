@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { useState } from 'react';
 
-import demoStyles from './DemoCommon.module.scss';
+import DemoImageBase from './DemoImageBase';
+
 import drawImageWithShader from '../../../utils/webgl/runProgram';
 
 const glCache = {
@@ -34,24 +34,10 @@ void main() {
 
 const DemoThreshold = () => {
   const [loaded, setLoaded] = useState(false);
-  const [t, setT] = useState(0.5);
   const [k, setK] = useState(0.5);
   const [original, setOriginal] = useState(false);
 
-  let canvas: HTMLCanvasElement | null = null;
-  let img: HTMLImageElement | null = null;
-
-  useEffect(() => {
-    if (!canvas) {
-      console.warn('Canvas unavailable');
-      return;
-    }
-
-    if (!img) {
-      console.warn('Image unavailable');
-      return;
-    }
-
+  const draw = (canvas: HTMLCanvasElement, img: HTMLImageElement) => {
     if (loaded || img.complete) {
       const scaling = window.devicePixelRatio;
       const rect = canvas.getBoundingClientRect();
@@ -67,7 +53,7 @@ const DemoThreshold = () => {
         canvas,
         shader,
         [
-          { name: 'u_threshold', value: t },
+          { name: 'u_threshold', value: 0.5 },
           { name: 'u_amplitude', value: k }
         ],
         glCache
@@ -76,41 +62,23 @@ const DemoThreshold = () => {
       const onload = () => setLoaded(true);
       img.addEventListener('load', onload, { once: true });
     }
-  }, [canvas, img, t, k, loaded]);
+  };
 
   return (
-    <div className={demoStyles.container}>
-      <div className={cn(
-        demoStyles.demoFrame,
-        demoStyles.wide
-      )}>
-        <picture className={demoStyles.demoContent}>
-          <source srcSet='/content/articles/dither/tram-original.webp' type='image/webp' />
-          <source srcSet='/content/articles/dither/tram-original.jpeg' type='image/jpeg' />
-          <img src='/content/articles/dither/tram-original.jpeg'
-            alt='Original image' ref={el => img = el} />
-        </picture>
-        <canvas className={demoStyles.canvas}
-          style={{ opacity: original ? 0 : 1 }}
-          ref={el => canvas = el} />
-      </div>
+    <DemoImageBase draw={draw} hideCanvas={original}>
+      <label>
+        <span><code>k={k.toFixed(2)}</code></span>
+        <input type='range' autoComplete='off' value={k} min={0} max={1} step={0.01}
+          onChange={e => setK(parseFloat(e.target.value))} />
+      </label>
 
-      <div className={demoStyles.controls}>
-
-        <label>
-          <span><code>k={k.toFixed(2)}</code></span>
-          <input type='range' autoComplete='off' value={k} min={0} max={1} step={0.01}
-            onChange={e => setK(parseFloat(e.target.value))} />
-        </label>
-
-        <label>
-          Show original
-          <input type='checkbox' checked={original}
-            onChange={e => setOriginal(e.target.checked)} />
-          <div className='toggle-slider' />
-        </label>
-      </div>
-    </div>
+      <label>
+        Show original
+        <input type='checkbox' checked={original}
+          onChange={e => setOriginal(e.target.checked)} />
+        <div className='toggle-slider' />
+      </label>
+    </DemoImageBase>
   );
 };
 

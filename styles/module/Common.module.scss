@@ -46,7 +46,7 @@
 
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start; // Oh shut up about start having limited support
 }
 
 .bigLinks a[href] {

@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { useState } from 'react';
 
-import demoStyles from './DemoCommon.module.scss';
 import drawImageWithShader from '../../../utils/webgl/runProgram';
 import Radio from '../../Radio';
+import DemoImageBase from './DemoImageBase';
 
 const glCache = {
   program: null,
@@ -56,10 +55,7 @@ const DemoPatternImage = ({
   const [size, setSize] = useState('4');
   const [pattern, setPattern] = useState(false);
 
-  let canvas: HTMLCanvasElement | null = null;
-  let img: HTMLImageElement | null = null;
-
-  useEffect(() => {
+  const draw = (canvas: HTMLCanvasElement, img: HTMLImageElement) => {
     if (!canvas) {
       console.warn('Canvas unavailable');
       return;
@@ -95,42 +91,26 @@ const DemoPatternImage = ({
       const onload = () => setLoaded(true);
       img.addEventListener('load', onload, { once: true });
     }
-  }, [canvas, img, pattern, size, loaded]);
+  };
 
   return (
-    <div className={demoStyles.container}>
-      <div className={cn(
-        demoStyles.demoFrame,
-        demoStyles.wide
-      )}>
-        <picture className={demoStyles.demoContent}>
-          <source srcSet='/content/articles/dither/tram-original.webp' type='image/webp' />
-          <source srcSet='/content/articles/dither/tram-original.jpeg' type='image/jpeg' />
-          <img src='/content/articles/dither/tram-original.jpeg'
-            alt='Original image' ref={el => img = el} />
-        </picture>
-        <canvas className={demoStyles.canvas}
-          ref={el => canvas = el} />
-      </div>
+    <DemoImageBase draw={draw}>
+      {showSizeRadio &&
+        <Radio name='demo_pattern' label='Tile size' value={size}
+          set={setSize}
+          options={{
+            '4': '4 × 4',
+            '2': '2 × 2',
+            '1': '1 × 1'
+          }} />}
 
-      <div className={demoStyles.controls}>
-        {showSizeRadio &&
-          <Radio name='demo_pattern' label='Tile size' value={size}
-            set={setSize}
-            options={{
-              '4': '4 × 4',
-              '2': '2 × 2',
-              '1': '1 × 1'
-            }} />}
-
-        <label>
-          Use pattern
-          <input type='checkbox' checked={pattern}
-            onChange={e => setPattern(e.target.checked)} />
-          <div className='toggle-slider' />
-        </label>
-      </div>
-    </div>
+      <label>
+        Use pattern
+        <input type='checkbox' checked={pattern}
+          onChange={e => setPattern(e.target.checked)} />
+        <div className='toggle-slider' />
+      </label>
+    </DemoImageBase>
   );
 };
 

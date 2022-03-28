@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { useState } from 'react';
 
-import demoStyles from './DemoCommon.module.scss';
 import drawImageWithShader from '../../../utils/webgl/runProgram';
 import Radio from '../../Radio';
+import DemoImageBase from './DemoImageBase';
 
 const glCache = {
   program: null,
@@ -51,10 +50,7 @@ const DemoOrdered = ({ type, sizes, initial }: DemoOrderedProps) => {
   const [size, setSize] = useState(initial || '8');
   const [original, setOriginal] = useState(false);
 
-  let canvas: HTMLCanvasElement | null = null;
-  let img: HTMLImageElement | null = null;
-
-  useEffect(() => {
+  const draw = (canvas: HTMLCanvasElement, img: HTMLImageElement) => {
     if (!canvas) {
       console.warn('Canvas unavailable');
       return;
@@ -87,38 +83,21 @@ const DemoOrdered = ({ type, sizes, initial }: DemoOrderedProps) => {
       const onload = () => setLoaded(true);
       img.addEventListener('load', onload, { once: true });
     }
-  }, [canvas, img, type, size, loaded]);
+  };
 
   return (
-    <div className={demoStyles.container}>
-      <div className={cn(
-        demoStyles.demoFrame,
-        demoStyles.wide
-      )}>
-        <picture className={demoStyles.demoContent}>
-          <source srcSet='/content/articles/dither/tram-original.webp' type='image/webp' />
-          <source srcSet='/content/articles/dither/tram-original.jpeg' type='image/jpeg' />
-          <img src='/content/articles/dither/tram-original.jpeg'
-            alt='Original image' ref={el => img = el} />
-        </picture>
-        <canvas className={demoStyles.canvas}
-          style={{ opacity: original ? 0 : 1 }}
-          ref={el => canvas = el} />
-      </div>
+    <DemoImageBase draw={draw} hideCanvas={original}>
+      <Radio name={`demo_${type}`} label='Map size' value={size}
+        set={setSize}
+        options={sizes} />
 
-      <div className={demoStyles.controls}>
-        <Radio name={`demo_${type}`} label='Map size' value={size}
-          set={setSize}
-          options={sizes} />
-
-        <label>
-          Show original
-          <input type='checkbox' checked={original}
-            onChange={e => setOriginal(e.target.checked)} />
-          <div className='toggle-slider' />
-        </label>
-      </div>
-    </div>
+      <label>
+        Show original
+        <input type='checkbox' checked={original}
+          onChange={e => setOriginal(e.target.checked)} />
+        <div className='toggle-slider' />
+      </label>
+    </DemoImageBase>
   );
 };
 
