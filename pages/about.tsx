@@ -7,9 +7,6 @@ import { homeCrumb } from '../types/Crumbs';
 import styles from '../styles/module/About.module.scss';
 import Link from 'next/link';
 
-import me from '../public/content/about/me.png';
-import Image from 'next/image';
-
 const About: NextPage = () => {
   return (
     <BaseLayout title='About' crumbs={[homeCrumb]}>
@@ -29,7 +26,11 @@ const About: NextPage = () => {
           </Paragraph>
         </div>
         <div className={styles.image}>
-          <Image src={me} alt='Me :)' />
+          <picture>
+            <source srcSet='/content/about/me.webp' type='image/webp' />
+            <source srcSet='/content/about/me.png' type='image/png' />
+            <img src='/content/about/me.png' alt='Me :)' />
+          </picture>
         </div>
       </div>
     </BaseLayout>
