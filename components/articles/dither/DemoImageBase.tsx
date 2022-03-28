@@ -25,16 +25,6 @@ const DemoImageBase = ({ children, hideCanvas, draw }: DemoImageBaseProps) => {
     }
 
     draw(canvas, img);
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (img && entry.target === canvas && entry.isIntersecting)
-          draw(canvas, img);
-      });
-    });
-    observer.observe(canvas);
-
-    return () => observer.disconnect();
   }, [canvas, img, draw]);
 
   return (
