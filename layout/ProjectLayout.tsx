@@ -30,7 +30,7 @@ const ProjectLayout = ({ meta, children }: ProjectLayoutProps) => {
           <Anchor href={meta.repoLink}>View on GitHub</Anchor>
         </div>
 
-        <ImageGrid images={[meta.screenshot]} />
+        <ImageGrid images={[meta.screenshot]} noScroll />
 
         <MDXProvider components={components}>
           <article>

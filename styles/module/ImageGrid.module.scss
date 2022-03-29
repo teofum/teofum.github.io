@@ -46,16 +46,16 @@
 /* === Gallery mode ========================================================= */
 .gallery {
   --thumb-aspect: calc(200% / 3);
-  --gl-row-gap: 0.5em;
-  row-gap: var(--gl-row-gap);
+  --gl-gap: 0.5em;
+  gap: var(--gl-gap);
   grid-auto-flow: row dense;
 
   @include respond-up("tablet-sm") {
-    --gl-row-gap: 0.5rem;
+    --gl-gap: 0.5rem;
   }
 
   @include respond-up("desktop") {
-    --gl-row-gap: 1rem;
+    --gl-gap: 1rem;
   }
 }
 
@@ -80,7 +80,7 @@
 }
 
 .gallery > figure.tall > picture::before {
-  padding-bottom: calc(var(--thumb-aspect) * 2 + var(--gl-row-gap) + 4px);
+  padding-bottom: calc(var(--thumb-aspect) * 2 + var(--gl-gap) + 4px);
 }
 
 .gallery > figure > picture > img {
