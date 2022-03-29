@@ -1,0 +1,31 @@
+@import "../breakpoints.scss";
+
+.links {
+  padding-top: 4.5em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Oh shut up about start having limited support
+}
+
+.links a[href] {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  padding: 0;
+  margin: 0 0 0.5em;
+
+  background: none;
+  color: var(--text);
+
+  transition-duration: var(--anim-m);
+}
+
+.links a[href]:hover {
+  color: var(--a500);
+}
+
+.meta {
+  padding-top: 3em;
+}

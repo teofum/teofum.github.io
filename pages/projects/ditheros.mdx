@@ -1,0 +1,26 @@
+import ProjectLayout from '../../layout/ProjectLayout';
+
+export default ({ children }) => <ProjectLayout meta={meta}>{children}</ProjectLayout>;
+export const meta = {
+  name: 'DitherOS',
+  link: 'https://fumagalli.ar/dither',
+  repoLink: 'https://github.com/teofum/dither',
+  tech: 'TypeScript, React, WebGL, Web Workers',
+  date: '2022',
+  screenshot: {
+    src: '/content/projects/ditheros/screenshot',
+    formats: ['webp', 'png'],
+    width: 2880,
+    height: 1800,
+    alt: 'DitherOS screenshot',
+    caption: 'DitherOS showing some of its applications'
+  }
+};
+
+**DitherOS** is a project I built for fun around DitherLab, a general-purpose *dithering engine* made as an exploration on different dithering techniques and ways to implement them on the web. The project itself explores recreating a desktop-like user interface inspired by the operating systems of the late 1990s and early 2000s.
+
+While DitherLab is the primary feature, I've used DitherOS as something of a playground for any retro-styled applications or games I might want to make for fun. After all, what's a retro OS without a classic time-killer like Minesweeper?
+
+<div class='note'>
+  DitherOS is, naturally, designed as a desktop experience. While it *does* work on mobile devices, don't be surprised if things break and most UI doesn't fit in your phone screen.
+</div>
