@@ -36,3 +36,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# don't upload gigabytes of original quality photos to github
+/.photos/
