@@ -12,6 +12,7 @@ const Home: NextPage = () => {
         <Link href='/about'>About</Link>
         <Link href='/articles'>Articles</Link>
         <Link href='/projects'>Projects</Link>
+        <Link href='/photos'>Photos</Link>
       </div>
     </BaseLayout>
   );

@@ -5,7 +5,8 @@ type ImageDef = {
   alt: string,
   width?: number,
   height?: number,
-  caption?: string
+  caption?: string,
+  vertical?: boolean
 };
 
 export default ImageDef;

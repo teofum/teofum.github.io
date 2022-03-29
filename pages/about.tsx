@@ -1,13 +1,14 @@
 import type { NextPage } from 'next';
+import Link from 'next/link';
 
 import BaseLayout from '../layout/BaseLayout';
 import Paragraph from '../components/Paragraph';
+import Anchor from '../components/Anchor';
+import ThatsMeSVG from '../components/about/ThatsMeSVG';
+
 import { homeCrumb } from '../types/Crumbs';
 
 import styles from '../styles/module/About.module.scss';
-import Link from 'next/link';
-import ThatsMeSVG from '../components/about/ThatsMeSVG';
-import Anchor from '../components/Anchor';
 
 const About: NextPage = () => {
   return (
