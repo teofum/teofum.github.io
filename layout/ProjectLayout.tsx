@@ -9,6 +9,7 @@ import ProjectMeta from '../types/ProjectMeta';
 import { homeCrumb, projectsCrumb } from '../types/Crumbs';
 
 import styles from '../styles/module/ProjectLayout.module.scss';
+import ImageGrid from '../components/ImageGrid';
 
 interface ProjectLayoutProps {
   meta: ProjectMeta;
@@ -29,7 +30,7 @@ const ProjectLayout = ({ meta, children }: ProjectLayoutProps) => {
           <Anchor href={meta.repoLink}>View on GitHub</Anchor>
         </div>
 
-        <Figure img={meta.screenshot} />
+        <ImageGrid images={[meta.screenshot]} />
 
         <MDXProvider components={components}>
           <article>
