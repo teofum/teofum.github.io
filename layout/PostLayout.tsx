@@ -2,6 +2,7 @@ import { MDXProvider } from '@mdx-js/react';
 
 import BaseLayout from './BaseLayout';
 import Paragraph from '../components/Paragraph';
+import Anchor from '../components/Anchor';
 import ScrollProgress from '../components/ScrollProgress';
 import { articleSettings } from '../components/Settings';
 
@@ -14,12 +15,13 @@ interface PostLayoutProps {
 }
 
 const components = {
-  p: Paragraph
+  p: Paragraph,
+  a: Anchor
 };
 
 const PostLayout = ({ meta, children }: PostLayoutProps) => {
   return (
-    <BaseLayout title={meta.title} crumbs={[ homeCrumb, articlesCrumb ]}
+    <BaseLayout title={meta.title} crumbs={[homeCrumb, articlesCrumb]}
       settings={articleSettings}>
       <ScrollProgress />
       <MDXProvider components={components}>

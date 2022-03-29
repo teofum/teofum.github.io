@@ -2,12 +2,13 @@ import { MDXProvider } from '@mdx-js/react';
 
 import BaseLayout from './BaseLayout';
 import Paragraph from '../components/Paragraph';
+import Anchor from '../components/Anchor';
+import Figure from '../components/Figure';
 
 import ProjectMeta from '../types/ProjectMeta';
 import { homeCrumb, projectsCrumb } from '../types/Crumbs';
 
 import styles from '../styles/module/ProjectLayout.module.scss';
-import Figure from '../components/Figure';
 
 interface ProjectLayoutProps {
   meta: ProjectMeta;
@@ -15,7 +16,8 @@ interface ProjectLayoutProps {
 }
 
 const components = {
-  p: Paragraph
+  p: Paragraph,
+  a: Anchor
 };
 
 const ProjectLayout = ({ meta, children }: ProjectLayoutProps) => {
@@ -23,8 +25,8 @@ const ProjectLayout = ({ meta, children }: ProjectLayoutProps) => {
     <BaseLayout title={meta.name} crumbs={[homeCrumb, projectsCrumb]}>
       <div>
         <div className={styles.links}>
-          <a href={meta.link}>Visit site</a>
-          <a href={meta.repoLink}>View on GitHub</a>
+          <Anchor href={meta.link}>Visit site</Anchor>
+          <Anchor href={meta.repoLink}>View on GitHub</Anchor>
         </div>
 
         <Figure img={meta.screenshot} />
