@@ -16,15 +16,22 @@ type FigureProps = {
 
 const sources = (img: ImageDef, width?: number, height?: number, thumb?: boolean) => {
   const fallback = img.formats[img.formats.length - 1];
-  const src = thumb ? `${img.src}.thumb` : img.src;
+  const srcSet = (format: string) => {
+    if (thumb && img.size === 'large')
+      return `${img.src}.thumb.lg.${format} 1.5x, ${img.src}.thumb.hd.${format} 1x`;
+    else if (thumb)
+      return `${img.src}.thumb.hd.${format} 1.5x, ${img.src}.thumb.sd.${format} 1x`;
+    else
+      return `${img.src}.${format}`;
+  };
 
   return img.formats
     .map(format => (
-      <source key={format} srcSet={`${src}.${format}`}
+      <source key={format} srcSet={`${srcSet(format)}`}
         type={`image/${format}`} />
     ))
     .concat(
-      <img key='img' src={`${src}.${fallback}`}
+      <img key='img' src={`${srcSet(fallback)}`}
         alt={img.alt} width={width} height={height} />
     );
 };

@@ -44,7 +44,7 @@ const ImageGrid = ({
       style={{ '--min-size': minSize } as any}>
       {images.map((img, i) => (
         <Figure key={i} img={img} thumb={useThumbs}
-          className={cn({ [styles.tall]: img.vertical })}
+          className={styles[img.size || 'normal']}
           onPictureClick={e => {
             const w = (e.target as HTMLImageElement).naturalWidth;
             setView(img);
@@ -58,10 +58,11 @@ const ImageGrid = ({
             <div className={styles.viewOverlay}
               onClick={() => setView(null)}>
               <div className={styles.closeHint}>
-                Click anywhere to close
+                Click outside image to close
               </div>
               <Figure img={view} width={useThumbs ? undefined : viewSize}
                 className={styles.viewFigure}
+                onPictureClick={e => e.stopPropagation()}
                 linkOriginal={gallery} />
             </div>
           </CSSTransition>}

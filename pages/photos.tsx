@@ -44,7 +44,7 @@ export const getStaticProps = async () => {
       src: '/content/photos/bpest-ferris',
       formats: ['jpeg', 'webp'],
       alt: 'Budapest ferris wheel',
-      vertical: true
+      size: 'tall'
     },
     {
       src: '/content/photos/bpest-tram',
@@ -60,17 +60,18 @@ export const getStaticProps = async () => {
       src: '/content/photos/bpest-alley',
       formats: ['jpeg', 'webp'],
       alt: 'Budapest alley',
-      vertical: true
+      size: 'tall'
+    },
+    {
+      src: '/content/photos/bpest-bridge',
+      formats: ['jpeg', 'webp'],
+      alt: 'Budapest bridge',
+      size: 'large'
     },
     {
       src: '/content/photos/bpest-train',
       formats: ['jpeg', 'webp'],
       alt: 'Budapest train'
-    },
-    {
-      src: '/content/photos/bpest-bridge',
-      formats: ['jpeg', 'webp'],
-      alt: 'Budapest bridge'
     },
     {
       src: '/content/photos/bpest-parl',
@@ -91,7 +92,7 @@ export const getStaticProps = async () => {
       src: '/content/photos/london-shard',
       formats: ['jpeg', 'webp'],
       alt: 'The Shard at dusk',
-      vertical: true
+      size: 'tall'
     },
     {
       src: '/content/photos/giant-road',
@@ -106,7 +107,8 @@ export const getStaticProps = async () => {
     {
       src: '/content/photos/giant-fields',
       formats: ['jpeg', 'webp'],
-      alt: 'Fields behind Giant\'s Causeway'
+      alt: 'Fields behind Giant\'s Causeway',
+      size: 'large'
     },
     {
       src: '/content/photos/giant-wave',
@@ -126,7 +128,8 @@ export const getStaticProps = async () => {
     {
       src: '/content/photos/vla-boat',
       formats: ['jpeg', 'webp'],
-      alt: 'A boat in a lake'
+      alt: 'A boat in a lake',
+      size: 'large'
     },
     {
       src: '/content/photos/vla-mountain',

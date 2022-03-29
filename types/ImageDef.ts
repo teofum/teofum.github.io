@@ -6,7 +6,7 @@ type ImageDef = {
   width?: number,
   height?: number,
   caption?: string,
-  vertical?: boolean
+  size?: 'tall' | 'large'
 };
 
 export default ImageDef;

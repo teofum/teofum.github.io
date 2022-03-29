@@ -48,6 +48,7 @@
   --thumb-aspect: calc(200% / 3);
   --gl-row-gap: 0.5em;
   row-gap: var(--gl-row-gap);
+  grid-auto-flow: row dense;
 
   @include respond-up("tablet-sm") {
     --gl-row-gap: 0.5rem;
@@ -60,6 +61,11 @@
 
 .gallery > figure.tall {
   grid-row: span 2;
+}
+
+.gallery > figure.large {
+  grid-row: span 2;
+  grid-column: span 2;
 }
 
 .gallery > figure > picture {
@@ -101,6 +107,10 @@
 
   background-color: var(--bg-o75);
   backdrop-filter: blur(5px);
+}
+
+.viewOverlay picture {
+  cursor: auto;
 }
 
 .viewOverlay img {
