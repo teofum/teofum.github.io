@@ -23,8 +23,7 @@
   @include respond-up('tablet-sm') {
     display: grid;
     grid-template-columns: 42ch 1fr;
-
-    height: 100%;
+    gap: 1em;
   }
 }
 
@@ -33,19 +32,19 @@
 
   @include respond-up('tablet-sm') {
     display: grid;
-    place-items: end;
+    align-content: start;
+    place-items: start end;
 
     padding-top: 3em;
   }
 }
 
-.image img {
-  mix-blend-mode: multiply;
-  opacity: 0.9;
-  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
+.image > svg {
+  fill: var(--a500);
+  z-index: 1;
 }
 
-:global(.dark) .image img {
-  mix-blend-mode: screen;
-  filter: contrast(1.15);
+.image img {
+  border: 2px solid currentColor;
+  border-radius: 9999px;
 }
