@@ -1,4 +1,7 @@
 import { MouseEventHandler } from 'react';
+
+import Anchor from './Anchor';
+
 import ImageDef from '../types/ImageDef';
 
 type FigureProps = {
@@ -7,6 +10,7 @@ type FigureProps = {
   height?: number,
   className?: string,
   thumb?: boolean,
+  linkOriginal?: boolean,
   onPictureClick?: MouseEventHandler<HTMLElement>
 };
 
@@ -31,12 +35,17 @@ const Figure = ({
   height,
   className,
   thumb,
+  linkOriginal,
   onPictureClick
 }: FigureProps) => {
   return (
     <figure className={className}>
       <picture onClick={onPictureClick}>
         {sources(img, width, height, thumb)}
+        {linkOriginal &&
+          <Anchor href={`${img.src}.${img.formats[img.formats.length - 1]}`}>
+            View full size
+          </Anchor>}
       </picture>
       {img.caption && <figcaption>{img.caption}</figcaption>}
     </figure>

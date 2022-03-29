@@ -136,10 +136,27 @@ img {
 
 picture {
   display: flex;
+  position: relative;
 }
 
 picture > img {
   object-fit: cover;
+}
+
+picture > a {
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
+}
+
+picture > a[href] {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 2px solid currentColor;
+}
+
+picture > a[href]:hover {
+  background-color: var(--h100);
 }
 
 figure {

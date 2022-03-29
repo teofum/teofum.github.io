@@ -61,7 +61,8 @@ const ImageGrid = ({
                 Click anywhere to close
               </div>
               <Figure img={view} width={useThumbs ? undefined : viewSize}
-                className={styles.viewFigure} />
+                className={styles.viewFigure}
+                linkOriginal={gallery} />
             </div>
           </CSSTransition>}
       </TransitionGroup>
