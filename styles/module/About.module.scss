@@ -28,7 +28,9 @@
 }
 
 .image {
-  display: none;
+  display: grid;
+  max-width: 65vw;
+  margin: 0 auto;
 
   @include respond-up('tablet-sm') {
     display: grid;

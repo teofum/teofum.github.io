@@ -3,7 +3,6 @@ import { MDXProvider } from '@mdx-js/react';
 import BaseLayout from './BaseLayout';
 import Paragraph from '../components/Paragraph';
 import Anchor from '../components/Anchor';
-import Figure from '../components/Figure';
 
 import ProjectMeta from '../types/ProjectMeta';
 import { homeCrumb, projectsCrumb } from '../types/Crumbs';
