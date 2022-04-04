@@ -6,6 +6,7 @@ import ImageDef from '../types/ImageDef';
 
 import styles from '../styles/module/ImageGrid.module.scss';
 import Figure from './Figure';
+import Anchor from './Anchor';
 
 interface ImageGridProps {
   images: ImageDef[];
@@ -29,8 +30,10 @@ const ImageGrid = ({
   gallery,
   useThumbs
 }: ImageGridProps) => {
-  const [view, setView] = useState<ImageDef | null>(null);
+  const [view, setView] = useState<number | null>(null);
   const [viewSize, setViewSize] = useState(0);
+
+  const viewImg = images[view || 0];
 
   return (
     <div className={cn(
@@ -47,23 +50,37 @@ const ImageGrid = ({
           className={styles[img.size || 'normal']}
           onPictureClick={e => {
             const w = (e.target as HTMLImageElement).naturalWidth;
-            setView(img);
+            setView(i);
             setViewSize(w * (pixelated ? getScaleFactor() : 1));
           }} />
       ))}
 
       <TransitionGroup>
-        {view &&
+        {view !== null &&
           <CSSTransition classNames={{ ...styles }} timeout={500}>
-            <div className={styles.viewOverlay}
-              onClick={() => setView(null)}>
-              <div className={styles.closeHint}>
-                Click outside image to close
+            <div className={styles.viewOverlay}>
+              <div className={styles.controls}>
+                {images.length > 1 &&
+                  <button disabled={view <= 0}
+                    onClick={() => setView(view - 1)}>
+                    Previous
+                  </button>}
+                {images.length > 1 &&
+                  <button disabled={view >= images.length - 1}
+                    onClick={() => setView(view + 1)}>
+                    Next
+                  </button>}
+                <button onClick={() => setView(null)}>
+                  Close
+                </button>
+                {gallery &&
+                  <Anchor href={`${viewImg.src}.${viewImg.formats[viewImg.formats.length - 1]}`}>
+                    View full size
+                  </Anchor>}
               </div>
-              <Figure img={view} width={useThumbs ? undefined : viewSize}
+              <Figure img={viewImg} width={useThumbs ? undefined : viewSize}
                 className={styles.viewFigure}
-                onPictureClick={e => e.stopPropagation()}
-                linkOriginal={gallery} />
+                onPictureClick={e => e.stopPropagation()} />
             </div>
           </CSSTransition>}
       </TransitionGroup>

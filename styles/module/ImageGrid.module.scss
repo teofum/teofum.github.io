@@ -107,14 +107,17 @@
 
   background-color: var(--bg-o75);
   backdrop-filter: blur(5px);
-}
 
-.viewOverlay picture {
   cursor: auto;
 }
 
 .viewOverlay img {
-  max-height: 75vh;
+  --space: calc(var(--text-xl) * 4 + 6em * 2);
+  max-height: calc(100vh - var(--space));
+
+  @include respond-up('tablet') {
+    --space: calc(var(--text-xl) + 6em * 2);
+  }
 }
 
 .viewOverlay figcaption {
@@ -127,9 +130,42 @@
   box-sizing: content-box;
 }
 
-.closeHint {
-  font-size: var(--text-sm);
-  color: var(--text-light);
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  @include respond-up('tablet') {
+    flex-direction: row;
+  }
+}
+
+.controls button,
+.controls a {
+  padding: 0;
+  margin: 0;
+
+  font-size: var(--text-xl);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: left;
+
+  border: none;
+  background: none;
+  color: var(--text);
+
+  &:disabled {
+    color: var(--text-light);
+  }
+
+  &:not(:disabled):hover {
+    color: var(--a500);
+  }
+
+  &:hover {
+    background: none;
+  }
 }
 
 /* === Transition styles ==================================================== */
