@@ -11,23 +11,36 @@
 }
 
 .radio > div {
+  position: relative;
+  padding: 4px;
+
   font-size: var(--text-sm);
   border: 2px solid currentColor;
   border-radius: var(--radius);
-  padding: 4px;
 
   justify-self: end;
 }
 
 .radioButton > input[type=radio] {
-  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  outline: 0;
+  border: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
 }
 
 .label {
-  font-weight: 700;
   padding: 0.125em 0.5em;
-  border-radius: var(--radius-sm);
+  
+  font-weight: 700;
   white-space: nowrap;
+
+  border-radius: var(--radius-sm);
 
   cursor: pointer;
   user-select: none;
@@ -39,5 +52,14 @@
 
 input[type=radio]:checked + .label {
   background-color: var(--text);
+  color: var(--bg);
+}
+
+input[type=radio]:focus-visible + .label {
+  color: var(--a500);
+}
+
+input[type=radio]:focus-visible:checked + .label {
+  background-color: var(--a500);
   color: var(--bg);
 }

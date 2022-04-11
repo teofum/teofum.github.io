@@ -89,6 +89,12 @@
   grid-template-columns: minmax(5ch, auto) 1fr auto;
 }
 
+.controls > label > input[type=checkbox],
+.controls > label > div:last-child {
+  grid-column: 2;
+  grid-row: 1;
+}
+
 .controls > label > div:last-child {
   justify-self: end;
 }

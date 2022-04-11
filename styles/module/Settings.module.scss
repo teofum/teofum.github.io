@@ -36,9 +36,10 @@
   position: relative;
 }
 
-.container > button:hover {
+.container > button:hover,
+.container > button:focus-visible {
   transform: scale(1.05);
-}
+} 
 
 .container > button:active {
   transform: scale(0.95);
