@@ -26,6 +26,10 @@
   color: var(--a500);
 }
 
+.links a[href]:focus-visible {
+  background-color: var(--a100);
+}
+
 .meta {
   padding-top: 3em;
 }

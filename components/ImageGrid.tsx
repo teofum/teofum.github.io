@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import cn from 'classnames';
 
@@ -33,6 +33,27 @@ const ImageGrid = ({
   const [view, setView] = useState<number | null>(null);
   const [viewSize, setViewSize] = useState(0);
 
+  useEffect(() => {
+    if (view !== null) {
+      const keyHandler = (ev: KeyboardEvent) => {
+        switch (ev.code) {
+          case 'ArrowLeft':
+            setView(v => (v !== null && v > 0 ? v - 1 : v));
+            break;
+          case 'ArrowRight':
+            setView(v => (v !== null && v < images.length - 1 ? v + 1 : v));
+            break;
+          case 'Escape':
+            setView(null);
+            break;
+        }
+      };
+
+      window.addEventListener('keydown', keyHandler);
+      return () => window.removeEventListener('keydown', keyHandler);
+    }
+  }, [view, images]);
+
   const viewImg = images[view || 0];
 
   return (
@@ -48,10 +69,18 @@ const ImageGrid = ({
       {images.map((img, i) => (
         <Figure key={i} img={img} thumb={useThumbs}
           className={styles[img.size || 'normal']}
+          tabIndex={0}
           onPictureClick={e => {
             const w = (e.target as HTMLImageElement).naturalWidth;
             setView(i);
             setViewSize(w * (pixelated ? getScaleFactor() : 1));
+          }}
+          onPictureKeyDown={e => {
+            if (e.code === 'Enter' || e.code === 'Space') {
+              const w = (e.target as HTMLImageElement).naturalWidth;
+              setView(i);
+              setViewSize(w * (pixelated ? getScaleFactor() : 1));
+            }
           }} />
       ))}
 
