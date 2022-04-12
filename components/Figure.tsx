@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { KeyboardEventHandler, MouseEventHandler } from 'react';
 
 import ImageDef from '../types/ImageDef';
 
@@ -6,9 +6,11 @@ type FigureProps = {
   img: ImageDef,
   width?: number,
   height?: number,
+  tabIndex?: number,
   className?: string,
   thumb?: boolean,
-  onPictureClick?: MouseEventHandler<HTMLElement>
+  onPictureClick?: MouseEventHandler<HTMLElement>,
+  onPictureKeyDown?: KeyboardEventHandler<HTMLElement>
 };
 
 const sources = (img: ImageDef, width?: number, height?: number, thumb?: boolean) => {
@@ -37,13 +39,16 @@ const Figure = ({
   img,
   width,
   height,
+  tabIndex,
   className,
   thumb,
-  onPictureClick
+  onPictureClick,
+  onPictureKeyDown
 }: FigureProps) => {
   return (
     <figure className={className}>
-      <picture onClick={onPictureClick}>
+      <picture tabIndex={tabIndex} onClick={onPictureClick}
+        onKeyDown={onPictureKeyDown}>
         {sources(img, width, height, thumb)}
       </picture>
       {img.caption && <figcaption>{img.caption}</figcaption>}

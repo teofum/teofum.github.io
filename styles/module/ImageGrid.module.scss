@@ -43,6 +43,16 @@
   cursor: pointer;
 }
 
+.grid > figure > picture {
+  transition-property: color, transform;
+}
+
+.grid > figure > picture:focus-visible {
+  border-color: var(--a500);
+  transform: scale(1.025);
+  z-index: 1;
+}
+
 /* === Gallery mode ========================================================= */
 .gallery {
   --thumb-aspect: calc(200% / 3);
@@ -165,6 +175,11 @@
 
   &:hover {
     background: none;
+  }
+
+  &:not(:disabled):focus-visible {
+    color: var(--a500);
+    outline: 2px solid var(--a500);
   }
 }
 
