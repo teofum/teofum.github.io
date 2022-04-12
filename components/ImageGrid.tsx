@@ -36,7 +36,6 @@ const ImageGrid = ({
   useEffect(() => {
     if (view !== null) {
       const keyHandler = (ev: KeyboardEvent) => {
-        console.log(ev);
         switch (ev.code) {
           case 'ArrowLeft':
             setView(v => (v !== null && v > 0 ? v - 1 : v));
