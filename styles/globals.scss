@@ -76,6 +76,10 @@ h2 > a[href]:hover {
   color: var(--text-light);
 }
 
+h2 > a[href]:focus-visible {
+  color: var(--a500);
+}
+
 h3 {
   font-size: var(--text-lg);
   margin: 2em 0 1em;
