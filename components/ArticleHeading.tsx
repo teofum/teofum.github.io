@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
 type HeadingProps = DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
@@ -11,7 +12,8 @@ const ArticleHeading = ({ children, ...props }: HeadingProps) => {
 
   return (
     <h2 id={id} {...props}>
-      {children}
+      <span>{children}</span>
+      <Link href={`#${id}`}>#</Link>
     </h2>
   );
 };
