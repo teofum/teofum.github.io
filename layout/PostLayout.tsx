@@ -3,6 +3,7 @@ import { MDXProvider } from '@mdx-js/react';
 import BaseLayout from './BaseLayout';
 import Paragraph from '../components/Paragraph';
 import Anchor from '../components/Anchor';
+import ArticleHeading from '../components/ArticleHeading';
 import ScrollProgress from '../components/ScrollProgress';
 import { articleSettings } from '../components/Settings';
 
@@ -16,7 +17,8 @@ interface PostLayoutProps {
 
 const components = {
   p: Paragraph,
-  a: Anchor
+  a: Anchor,
+  h2: ArticleHeading
 };
 
 const PostLayout = ({ meta, children }: PostLayoutProps) => {

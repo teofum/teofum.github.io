@@ -54,8 +54,30 @@ h2 {
   letter-spacing: -0.015em;
   line-height: 1.2;
   margin: 1.8em 0 0.6em;
+}
 
+h2 > span {
   text-decoration: underline solid currentColor 2px;
+}
+
+h2 > a[href] {
+  margin-left: 0.125em;
+
+  background: none;
+  color: transparent;
+}
+
+h2:hover > a[href] {
+  color: var(--text-lighter);
+}
+
+h2 > a[href]:hover {
+  background: none;
+  color: var(--text-light);
+}
+
+h2 > a[href]:focus-visible {
+  color: var(--a500);
 }
 
 h3 {
