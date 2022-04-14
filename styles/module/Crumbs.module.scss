@@ -9,4 +9,13 @@
 
 .crumb a[href] {
   margin: 0 0.25em;
+
+  text-decoration: none;
+  
+  color: var(--a500);
+  background-color: var(--a100);
+}
+
+.crumb a[href]:hover {
+  background-color: var(--a300);
 }
