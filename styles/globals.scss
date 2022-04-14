@@ -91,9 +91,8 @@ p {
 
 /* === Link styling ========================================================= */
 a[href] {
-  color: var(--a500);
-  text-decoration: none;
-  background-color: var(--a100);
+  color: var(--text);
+  text-decoration: underline solid currentColor 2px;
   border-radius: var(--radius);
 
   margin: 0 -0.1em -0.1em;
@@ -101,7 +100,8 @@ a[href] {
 }
 
 a[href]:hover {
-  background-color: var(--a300);
+  color: var(--a500);
+  background-color: var(--a100);
 }
 
 /* === List styling ========================================================= */
@@ -120,7 +120,8 @@ ol > li {
 
 code {
   font-family: "IBM Plex Mono", monospace;
-  font-style: italic;
+  font-size: var(--text-code);
+
   color: var(--a500);
   background-color: var(--h100);
   border-radius: var(--radius);
@@ -130,6 +131,7 @@ code {
 }
 
 em code {
+  font-style: normal;
   color: var(--text);
 }
 
