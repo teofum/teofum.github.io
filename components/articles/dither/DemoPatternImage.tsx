@@ -16,6 +16,7 @@ uniform sampler2D u_thresholdMap;
 uniform float u_thresholdSize;
 uniform float u_useThreshold;
 uniform float u_tileSize;
+uniform float u_gamma;
 uniform vec2 u_texSize;
 varying vec2 v_texCoord;
 
@@ -38,6 +39,7 @@ void main() {
   color = vec3(floor(color.x * 16.0 + 0.5) / 16.0);
 
   if (u_useThreshold > 0.0) {  
+    if (u_gamma > 0.0) color = gamma(color);
     float t = texture2D(u_thresholdMap, thresholdCoord).x;
     color = luma(color) < t ? vec3(0.0) : vec3(1.0);
   }
@@ -46,10 +48,12 @@ void main() {
 
 interface DemoPatternImageProps {
   showSizeRadio?: boolean;
+  gamma?: boolean;
 }
 
 const DemoPatternImage = ({
-  showSizeRadio
+  showSizeRadio,
+  gamma,
 }: DemoPatternImageProps) => {
   const [loaded, setLoaded] = useState(false);
   const [size, setSize] = useState('4');
@@ -82,6 +86,7 @@ const DemoPatternImage = ({
         shader,
         [
           { name: 'u_useThreshold', value: pattern ? 1 : 0 },
+          { name: 'u_gamma', value: gamma ? 1 : 0 },
           { name: 'u_tileSize', value: parseInt(size) }
         ],
         glCache,

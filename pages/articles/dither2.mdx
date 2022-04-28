@@ -1,0 +1,35 @@
+import Link from 'next/link';
+
+import PostLayout from '../../layout/PostLayout';
+import DemoPatternImage from '../../components/articles/dither/DemoPatternImage';
+
+export default ({ children }) => <PostLayout meta={meta}>{children}</PostLayout>;
+export const meta = {
+  title: 'Dithering, part 2: introducing color'
+};
+
+## An introduction, continued
+
+In the <Link href='/articles/dither'>first part</Link> of this series, we learned what dithering is, why we might want to use it, and a few different ways to apply dithering to an image. So far we've only seen pure black and white implementations. In this article we'll dive deeper into proper implementation of dithering algorithms, taking a look at some issues we skipped over last time and—perhaps most excitingly—at the color versions of these algorithms.
+
+The basics of dithering are well covered in the previous article, so we'll be picking up where we left off. If you haven't read the first part, I highly recommend you check it out before reading this one. That said, let's start by looking into something I intentionally left out of part one:
+
+## Gamma correction
+
+If you've read part one of this series, you might have noticed most interactive demos looked about right—with one notable exception:
+
+<DemoPatternImage />
+
+This example, used to explain the principle behind <Link href='/articles/dither#ordered-dithering'>ordered dithering</Link>, looks very bright and “washed out”. The reason for that is it doesn't have *gamma correction*, a process necessary to make dithered images accurate which I sneakily applied in every other demo, neglecting to mention it for the sake of simplicity. This one skips it in order to keep a 1-to-1 mapping between the brightness level of a “tile” and the pattern applied to it. With gamma correction applied, the same demo looks like this:
+
+<DemoPatternImage gamma />
+
+So what *is* gamma correction, and how does it help make our images accurate?
+
+### How it works
+
+The reason we need gamma correction is because of the way monitors work, which is in turn a consequence of another little quirk in the way our eyes themselves work.
+
+In short, the human eye has a *non-linear response* to light: we're much better at perceiving small changes in brightness in darker places than overall brighter ones. What this means is we don't necessarily see twice as much light as twice the brightness—in fact, what we see as a “50% gray” actually reflects only about 20% of incoming light.
+
+Because of this quirk, monitors benefit from encoding color in the same non-linear way: brightness becomes *perceptually uniform*, which makes working with color much easier, and we get more colors closer together in the darker shades where our eyes are better are spotting small differences.

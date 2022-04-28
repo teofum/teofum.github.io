@@ -27,6 +27,10 @@ export const getStaticProps = async () => {
     {
       title: 'Dithering: a visual introduction',
       path: '/articles/dither'
+    },
+    {
+      title: 'Dithering, part 2: introducing color',
+      path: '/articles/dither2'
     }
   ];
 
