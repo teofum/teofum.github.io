@@ -39,7 +39,7 @@ const texCoords = [
 ];
 
 const drawImageWithShader = (
-  img: HTMLImageElement,
+  img: TexImageSource,
   rt: HTMLCanvasElement,
   fragSource: string,
   uniforms: { name: string, value: number }[],

@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import PostLayout from '../../layout/PostLayout';
 import DemoPatternImage from '../../components/articles/dither/DemoPatternImage';
+import DemoGammaGradient from '../../components/articles/dither2/DemoGammaGradient';
 
 export default ({ children }) => <PostLayout meta={meta}>{children}</PostLayout>;
 export const meta = {
@@ -33,3 +34,5 @@ The reason we need gamma correction is because of the way monitors work, which i
 In short, the human eye has a *non-linear response* to light: we're much better at perceiving small changes in brightness in darker places than overall brighter ones. What this means is we don't necessarily see twice as much light as twice the brightness—in fact, what we see as a “50% gray” actually reflects only about 20% of incoming light.
 
 Because of this quirk, monitors benefit from encoding color in the same non-linear way: brightness becomes *perceptually uniform*, which makes working with color much easier, and we get more colors closer together in the darker shades where our eyes are better are spotting small differences.
+
+<DemoGammaGradient />

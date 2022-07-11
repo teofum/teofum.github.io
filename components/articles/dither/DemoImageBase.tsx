@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import cn from 'classnames';
 
-import demoStyles from './DemoCommon.module.scss';
+import demoStyles from '../DemoCommon.module.scss';
 
 interface DemoImageBaseProps {
   draw: (canvas: HTMLCanvasElement, img: HTMLImageElement) => void;

@@ -1,6 +1,6 @@
 const tex2DFromImage = (
   gl: WebGLRenderingContext,
-  image: HTMLImageElement,
+  image: TexImageSource,
   options: {
     internalFormat: number,
     format: number,

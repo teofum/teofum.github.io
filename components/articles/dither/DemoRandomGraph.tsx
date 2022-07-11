@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
 
-import demoStyles from './DemoCommon.module.scss';
+import demoStyles from '../DemoCommon.module.scss';
 import styles from './DemoRandomGraph.module.scss';
 
 // Precalculated random array

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import demoStyles from './DemoCommon.module.scss';
+import demoStyles from '../DemoCommon.module.scss';
 
 const thresholdMap = [
   0, 12, 3, 15,
